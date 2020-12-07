@@ -126,6 +126,7 @@ func main() {
 		generator.NewComment(" This file was auto-generated."),
 		generator.NewComment(" DO NOT EDIT MANUALLY!!!"),
 		generator.NewPackage("api"),
+		generator.NewImport("github.com/midnight-trigger/todo/api/controller"),
 		registerRoutesFunc,
 		registerAuthRoutesFunc,
 	).AddStatements(registererFuncs...).Gofmt("-s").Goimports().Generate(0)
