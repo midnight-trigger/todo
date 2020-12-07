@@ -1,3 +1,5 @@
+module github.com/midnight-trigger/todo
+
 go 1.14
 
 require (
@@ -35,7 +37,3 @@ require (
 	golang.org/x/text v0.3.3
 	gopkg.in/yaml.v2 v2.2.8
 )
-
-//replace gopkg.in/urfave/cli.v2 => github.com/urfave/cli/v2 v2.2.0
-
-module todo_api

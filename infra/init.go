@@ -1,7 +1,7 @@
 package infra
 
 import (
-	"mysql"
+	"github.com/midnight-trigger/todo/infra/mysql"
 )
 
 func Init() {

@@ -4,12 +4,12 @@ import (
 	"net/http"
 	"os"
 
-	"./api"
+	"github.com/midnight-trigger/todo/api"
 
-	"./configs"
-	"./infra"
-	"./infra/mysql"
-	"./logger"
+	"github.com/midnight-trigger/todo/configs"
+	"github.com/midnight-trigger/todo/infra"
+	"github.com/midnight-trigger/todo/infra/mysql"
+	"github.com/midnight-trigger/todo/logger"
 
 	_ "github.com/joho/godotenv/autoload"
 	"github.com/labstack/echo"
