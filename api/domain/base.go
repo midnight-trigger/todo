@@ -5,10 +5,7 @@ import (
 	"reflect"
 	"time"
 
-	"error_handling"
-	"logger"
-
-	"github.com/google/uuid"
+	"github.com/midnight-trigger/todo/api/error_handling"
 )
 
 type Base struct {
@@ -31,15 +28,6 @@ type Pagination struct {
 
 func (r *Result) New() {
 	r.Code = http.StatusOK
-}
-
-func (b *Base) GetUuid() string {
-	u, err := uuid.NewRandom()
-	if err != nil {
-		logger.L.Error(err)
-	}
-	uuId := u.String()
-	return uuId
 }
 
 func (b *Base) SetStructOnSameField(fromStruct interface{}, toStruct interface{}) {
