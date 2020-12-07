@@ -6,7 +6,8 @@ import (
 	"os"
 	"strings"
 
-	"./http_client"
+	"github.com/midnight-trigger/todo/http_client"
+
 	"github.com/spf13/viper"
 )
 
