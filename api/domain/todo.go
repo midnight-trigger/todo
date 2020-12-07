@@ -10,7 +10,7 @@ type Todo struct {
 }
 
 func GetNewTodoService() *Todo {
-	todo := new(User)
+	todo := new(Todo)
 	todo.MTodos = mysql.GetNewTodo()
 	return todo
 }
