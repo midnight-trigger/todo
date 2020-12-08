@@ -2,7 +2,6 @@ package domain
 
 import (
 	"errors"
-	"fmt"
 
 	"github.com/midnight-trigger/todo/api/definition"
 	"github.com/midnight-trigger/todo/infra/cognito"
@@ -31,8 +30,6 @@ func (s *User) PostSigninUser(body *definition.PostSigninUserRequestBody) (r Res
 		logger.L.Error(err)
 		return
 	}
-
-	fmt.Println(cognito)
 
 	response := new(definition.PostSigninUserResponse)
 	response.IdToken = *cognito.AuthenticationResult.IdToken
