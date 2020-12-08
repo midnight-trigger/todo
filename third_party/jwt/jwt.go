@@ -4,16 +4,16 @@ import (
 	"net/http"
 	"strings"
 
-	"./configs"
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
+	"github.com/midnight-trigger/todo/configs"
 )
 
 // todo complete Claims
 type Claims struct {
 	Sub    string `json:"sub"`
-	UserID string `json:"user_id"`
+	UserId string `json:"user_id"`
 }
 
 type Config struct {
@@ -63,7 +63,7 @@ func GetJWTClaims(ctx echo.Context) (*Claims, *Meta) {
 	}
 
 	if c, ok := token.Claims.(jwt.MapClaims); ok {
-		claims.UserID = c["cognito:username"].(string)
+		claims.UserId = c["cognito:username"].(string)
 	} else {
 		return jwtError()
 	}

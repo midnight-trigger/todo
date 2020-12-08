@@ -47,6 +47,12 @@ func (e *ErrorHandling) FailureHashedPasswordException(stackErr error) {
 	e.setSlackErrorInfo(stackErr, "")
 }
 
+func (e *ErrorHandling) UserNotFoundException(stackErr error) {
+	e.Code = http.StatusNotFound
+	e.ErrMessage = "対象ユーザーが見つかりません"
+	e.setSlackErrorInfo(stackErr, "")
+}
+
 func GetValidationErrorMessage(field string, tag string, params string) (message string) {
 	switch tag {
 	case "required":
@@ -57,6 +63,10 @@ func GetValidationErrorMessage(field string, tag string, params string) (message
 			message = "メールアドレスは必須です"
 		case "Password":
 			message = "パスワードは必須です"
+		case "Title":
+			message = "Todoタイトルは必須です"
+		case "Body":
+			message = "Todo詳細は必須です"
 		}
 	case "email":
 		switch field {
@@ -74,6 +84,8 @@ func GetValidationErrorMessage(field string, tag string, params string) (message
 			message = fmt.Sprintf("ユーザ名は%s文字以内で入力してください", params)
 		case "Password":
 			message = fmt.Sprintf("パスワードは%s文字以内で入力してください", params)
+		case "Title":
+			message = fmt.Sprintf("Todoタイトルは%s文字以内で入力してください", params)
 		}
 	}
 	return

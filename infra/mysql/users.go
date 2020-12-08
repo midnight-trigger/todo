@@ -17,11 +17,17 @@ type Users struct {
 
 //go:generate mockgen -source users.go -destination mock/mock_users.go
 type IUsers interface {
+	FindById(id string) (user Users, err error)
 	Create(user *Users) (err error)
 }
 
 func GetNewUser() *Users {
 	return &Users{}
+}
+
+func (m *Users) FindById(id string) (user Users, err error) {
+	err = db.Where("id = ?", id).First(&user).Error
+	return
 }
 
 func (m *Users) Create(user *Users) (err error) {

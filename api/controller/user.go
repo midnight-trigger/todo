@@ -29,8 +29,8 @@ func (c *User) PostSigninUser(ctx echo.Context) (response *Response) {
 		return c.FormatResult(&c.Result, ctx)
 	}
 
-	userService := domain.GetNewUserService()
-	result := userService.PostSigninUser(body)
+	service := domain.GetNewUserService()
+	result := service.PostSigninUser(body)
 	return c.FormatResult(&result, ctx)
 }
 
@@ -49,7 +49,7 @@ func (c *User) PostUser(ctx echo.Context) (response *Response) {
 		return c.FormatResult(&c.Result, ctx)
 	}
 
-	userService := domain.GetNewUserService()
-	result := userService.PostUser(body)
+	service := domain.GetNewUserService()
+	result := service.PostUser(body)
 	return c.FormatResult(&result, ctx)
 }
