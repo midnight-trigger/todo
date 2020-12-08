@@ -17,8 +17,15 @@ type Todos struct {
 
 //go:generate mockgen -source todos.go -destination mock/mock_todos.go
 type ITodos interface {
+	Create(todo *Todos) (insertedTodo *Todos, err error)
 }
 
 func GetNewTodo() *Todos {
 	return &Todos{}
+}
+
+func (m *Todos) Create(todo *Todos) (insertedTodo *Todos, err error) {
+	err = db.Create(todo).Error
+	insertedTodo = todo
+	return
 }

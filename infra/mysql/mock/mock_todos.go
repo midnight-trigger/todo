@@ -6,6 +6,8 @@ package mock_mysql
 
 import (
 	gomock "github.com/golang/mock/gomock"
+	mysql "github.com/midnight-trigger/todo/infra/mysql"
+	reflect "reflect"
 )
 
 // MockITodos is a mock of ITodos interface
@@ -29,4 +31,19 @@ func NewMockITodos(ctrl *gomock.Controller) *MockITodos {
 // EXPECT returns an object that allows the caller to indicate expected use
 func (m *MockITodos) EXPECT() *MockITodosMockRecorder {
 	return m.recorder
+}
+
+// Create mocks base method
+func (m *MockITodos) Create(todo *mysql.Todos) (int64, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Create", todo)
+	ret0, _ := ret[0].(int64)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// Create indicates an expected call of Create
+func (mr *MockITodosMockRecorder) Create(todo interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Create", reflect.TypeOf((*MockITodos)(nil).Create), todo)
 }
