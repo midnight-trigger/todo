@@ -53,6 +53,18 @@ func (e *ErrorHandling) UserNotFoundException(stackErr error) {
 	e.setSlackErrorInfo(stackErr, "")
 }
 
+func (e *ErrorHandling) TodoNotFoundException(stackErr error) {
+	e.Code = http.StatusNotFound
+	e.ErrMessage = "対象Todoが見つかりません"
+	e.setSlackErrorInfo(stackErr, "")
+}
+
+func (e *ErrorHandling) UserIsNotOwnerException(stackErr error) {
+	e.Code = http.StatusBadRequest
+	e.ErrMessage = "必要な権限がありません"
+	e.setSlackErrorInfo(stackErr, "")
+}
+
 func GetValidationErrorMessage(field string, tag string, params string) (message string) {
 	switch tag {
 	case "required":
