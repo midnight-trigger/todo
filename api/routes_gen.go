@@ -14,6 +14,7 @@ func RegisterRoutes(e *echo.Echo) {
 }
 func RegisterAuthRoutes(e *echo.Group) {
 	PostTodo(e, &controller.Todo{})
+	PutTodo(e, &controller.Todo{})
 }
 func PostSigninUser(
 	e *echo.Echo,
@@ -43,6 +44,19 @@ func PostTodo(
 			return c.JSON(r.Code, r)
 		}
 		res := inter.PostTodo(c, claims)
+		return c.JSON(res.Meta.Code, res)
+	})
+}
+func PutTodo(
+	e *echo.Group,
+	inter *controller.Todo,
+) {
+	e.PUT("api/v1/todos/:todoId", func(c echo.Context) error {
+		claims, r := jwt.GetJWTClaims(c)
+		if claims == nil {
+			return c.JSON(r.Code, r)
+		}
+		res := inter.PutTodo(c, claims)
 		return c.JSON(res.Meta.Code, res)
 	})
 }

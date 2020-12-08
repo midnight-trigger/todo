@@ -1,6 +1,7 @@
 package mysql
 
 import (
+	"fmt"
 	"time"
 )
 
@@ -17,15 +18,28 @@ type Todos struct {
 
 //go:generate mockgen -source todos.go -destination mock/mock_todos.go
 type ITodos interface {
+	FindById(id int64) (todo Todos, err error)
 	Create(todo *Todos) (insertedTodo *Todos, err error)
+	Update(oldParams Todos, updateParams map[string]interface{}) (err error)
 }
 
 func GetNewTodo() *Todos {
 	return &Todos{}
 }
 
+func (m *Todos) FindById(id int64) (todo Todos, err error) {
+	err = db.Where("id = ?", id).First(&todo).Error
+	return
+}
+
 func (m *Todos) Create(todo *Todos) (insertedTodo *Todos, err error) {
 	err = db.Create(todo).Error
 	insertedTodo = todo
+	return
+}
+
+func (m *Todos) Update(oldParams Todos, updateParams map[string]interface{}) (err error) {
+	err = db.Model(&oldParams).Updates(updateParams).Error
+	fmt.Println(oldParams)
 	return
 }

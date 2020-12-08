@@ -55,3 +55,44 @@ func (s *Todo) PostTodo(body *definition.PostTodoRequestBody, userId string) (r 
 	r.Data = response
 	return
 }
+
+func (s *Todo) PutTodo(param *definition.PutTodoParam, body *definition.PutTodoRequestBody, userId string) (r Result) {
+	r.New()
+
+	// Todo存在チェック
+	oldParams, err := s.MTodos.FindById(param.TodoId)
+	if gorm.IsRecordNotFoundError(err) {
+		r.TodoNotFoundException(errors.New(""))
+		logger.L.Error(r.ErrMessage)
+		return
+	}
+	if err != nil {
+		r.ServerErrorException(errors.New(""), err.Error())
+		logger.L.Error(err)
+		return
+	}
+
+	// ログイン中ユーザのDB更新権限チェック
+	if oldParams.UserId != userId {
+		r.UserIsNotOwnerException(errors.New(""))
+		logger.L.Error(r.ErrMessage)
+		return
+	}
+
+	updateParams := map[string]interface{}{
+		"Title": body.Title,
+		"Body":  body.Body,
+	}
+	err = s.MTodos.Update(oldParams, updateParams)
+	if err != nil {
+		r.ServerErrorException(err, err.Error())
+		logger.L.Error(err)
+		return
+	}
+
+	response := new(definition.PutTodoResponse)
+	s.SetStructOnSameField(oldParams, response)
+	s.SetStructOnSameField(body, response)
+	r.Data = response
+	return
+}

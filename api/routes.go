@@ -9,4 +9,5 @@ type UserRoutes struct {
 
 type TodoRoutes struct {
 	PostTodo void `method:"POST" path:"api/v1/todos" auth:"true"`
+	PutTodo  void `method:"PUT"  path:"api/v1/todos/:todoId" auth:"true"`
 }
