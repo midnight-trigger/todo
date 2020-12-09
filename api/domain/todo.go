@@ -22,6 +22,38 @@ func GetNewTodoService() *Todo {
 	return todo
 }
 
+func (s *Todo) GetTodos(params *definition.GetTodosParam, userId string) (r Result) {
+	r.New()
+
+	// 検索条件をもとにTodo一覧を取得
+	todos, err := s.MTodos.FindByQuery(params, userId)
+	if err != nil {
+		r.ServerErrorException(errors.New(""), err.Error())
+		logger.L.Error(err)
+		return
+	}
+
+	var responses []*definition.GetTodosResponse
+	for _, todo := range todos {
+		response := new(definition.GetTodosResponse)
+		s.SetStructOnSameField(todo, response)
+		responses = append(responses, response)
+	}
+	r.Data = responses
+
+	pagination := new(Pagination)
+	s.SetStructOnSameField(params, pagination)
+
+	pagination.Total, err = s.MTodos.GetTotalCount(params, userId)
+	if err != nil {
+		r.ServerErrorException(errors.New(""), err.Error())
+		logger.L.Error(err)
+		return
+	}
+	r.Pagination = pagination
+	return
+}
+
 func (s *Todo) PostTodo(body *definition.PostTodoRequestBody, userId string) (r Result) {
 	r.New()
 
