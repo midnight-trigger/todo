@@ -13,6 +13,7 @@ func RegisterRoutes(e *echo.Echo) {
 	PostUser(e, &controller.User{})
 }
 func RegisterAuthRoutes(e *echo.Group) {
+	GetTodos(e, &controller.Todo{})
 	PostTodo(e, &controller.Todo{})
 	PutTodo(e, &controller.Todo{})
 	DeleteTodo(e, &controller.Todo{})
@@ -32,6 +33,19 @@ func PostUser(
 ) {
 	e.POST("api/v1/users", func(c echo.Context) error {
 		res := inter.PostUser(c)
+		return c.JSON(res.Meta.Code, res)
+	})
+}
+func GetTodos(
+	e *echo.Group,
+	inter *controller.Todo,
+) {
+	e.GET("api/v1/todos", func(c echo.Context) error {
+		claims, r := jwt.GetJWTClaims(c)
+		if claims == nil {
+			return c.JSON(r.Code, r)
+		}
+		res := inter.GetTodos(c, claims)
 		return c.JSON(res.Meta.Code, res)
 	})
 }
