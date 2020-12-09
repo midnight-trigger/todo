@@ -79,6 +79,7 @@ func (s *Todo) PutTodo(param *definition.PutTodoParam, body *definition.PutTodoR
 		return
 	}
 
+	// DB更新
 	updateParams := map[string]interface{}{
 		"Title": body.Title,
 		"Body":  body.Body,
@@ -93,6 +94,43 @@ func (s *Todo) PutTodo(param *definition.PutTodoParam, body *definition.PutTodoR
 	response := new(definition.PutTodoResponse)
 	s.SetStructOnSameField(oldParams, response)
 	s.SetStructOnSameField(body, response)
+	r.Data = response
+	return
+}
+
+func (s *Todo) DeleteTodo(param *definition.DeleteTodoParam, userId string) (r Result) {
+	r.New()
+
+	// Todo存在チェック
+	todo, err := s.MTodos.FindById(param.TodoId)
+	if gorm.IsRecordNotFoundError(err) {
+		r.TodoNotFoundException(errors.New(""))
+		logger.L.Error(r.ErrMessage)
+		return
+	}
+	if err != nil {
+		r.ServerErrorException(errors.New(""), err.Error())
+		logger.L.Error(err)
+		return
+	}
+
+	// ログイン中ユーザのDB削除権限チェック
+	if todo.UserId != userId {
+		r.UserIsNotOwnerException(errors.New(""))
+		logger.L.Error(r.ErrMessage)
+		return
+	}
+
+	// レコード削除
+	err = s.MTodos.Delete(&todo)
+	if err != nil {
+		r.ServerErrorException(err, err.Error())
+		logger.L.Error(err)
+		return
+	}
+
+	response := new(definition.DeleteTodoResponse)
+	response.Id = param.TodoId
 	r.Data = response
 	return
 }
