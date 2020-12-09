@@ -34,10 +34,10 @@ func (m *MockITodos) EXPECT() *MockITodosMockRecorder {
 }
 
 // FindById mocks base method
-func (m *MockITodos) FindById(id int64) (*mysql.Todos, error) {
+func (m *MockITodos) FindById(id int64) (mysql.Todos, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "FindById", id)
-	ret0, _ := ret[0].(*mysql.Todos)
+	ret0, _ := ret[0].(mysql.Todos)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -64,7 +64,7 @@ func (mr *MockITodosMockRecorder) Create(todo interface{}) *gomock.Call {
 }
 
 // Update mocks base method
-func (m *MockITodos) Update(oldParams *mysql.Todos, updateParams map[string]interface{}) error {
+func (m *MockITodos) Update(oldParams mysql.Todos, updateParams map[string]interface{}) error {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Update", oldParams, updateParams)
 	ret0, _ := ret[0].(error)
@@ -75,4 +75,18 @@ func (m *MockITodos) Update(oldParams *mysql.Todos, updateParams map[string]inte
 func (mr *MockITodosMockRecorder) Update(oldParams, updateParams interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Update", reflect.TypeOf((*MockITodos)(nil).Update), oldParams, updateParams)
+}
+
+// Delete mocks base method
+func (m *MockITodos) Delete(todo *mysql.Todos) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Delete", todo)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// Delete indicates an expected call of Delete
+func (mr *MockITodosMockRecorder) Delete(todo interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Delete", reflect.TypeOf((*MockITodos)(nil).Delete), todo)
 }
