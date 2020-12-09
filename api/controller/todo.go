@@ -54,3 +54,23 @@ func (c *Todo) PutTodo(ctx echo.Context, claims *jwt.Claims) (response *Response
 	result := service.PutTodo(param, body, claims.UserId)
 	return c.FormatResult(&result, ctx)
 }
+
+func (c *Todo) DeleteTodo(ctx echo.Context, claims *jwt.Claims) (response *Response) {
+	defer func() {
+		if e := recover(); e != nil {
+			c.ServerErrorException(errors.New(""), fmt.Sprintf("%+v", e))
+			logger.L.Error(c.ErrMessage)
+			c.FormatResult(&c.Result, ctx)
+		}
+	}()
+
+	param, err := definition.CreateDeleteTodoParam(ctx)
+	if err != nil {
+		c.ValidationException(err, err.Error())
+		return c.FormatResult(&c.Result, ctx)
+	}
+
+	service := domain.GetNewTodoService()
+	result := service.DeleteTodo(param, claims.UserId)
+	return c.FormatResult(&result, ctx)
+}

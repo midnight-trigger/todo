@@ -21,6 +21,7 @@ type ITodos interface {
 	FindById(id int64) (todo Todos, err error)
 	Create(todo *Todos) (insertedTodo *Todos, err error)
 	Update(oldParams Todos, updateParams map[string]interface{}) (err error)
+	Delete(todo *Todos) (err error)
 }
 
 func GetNewTodo() *Todos {
@@ -41,5 +42,10 @@ func (m *Todos) Create(todo *Todos) (insertedTodo *Todos, err error) {
 func (m *Todos) Update(oldParams Todos, updateParams map[string]interface{}) (err error) {
 	err = db.Model(&oldParams).Updates(updateParams).Error
 	fmt.Println(oldParams)
+	return
+}
+
+func (m *Todos) Delete(todo *Todos) (err error) {
+	err = db.Delete(todo).Error
 	return
 }
