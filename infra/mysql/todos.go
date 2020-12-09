@@ -3,6 +3,9 @@ package mysql
 import (
 	"fmt"
 	"time"
+
+	"github.com/jinzhu/gorm"
+	"github.com/midnight-trigger/todo/api/definition"
 )
 
 type Todos struct {
@@ -18,6 +21,8 @@ type Todos struct {
 
 //go:generate mockgen -source todos.go -destination mock/mock_todos.go
 type ITodos interface {
+	FindByQuery(params *definition.GetTodosParam, userId string) (todos []Todos, err error)
+	GetTotalCount(params *definition.GetTodosParam, userId string) (total int, err error)
 	FindById(id int64) (todo Todos, err error)
 	Create(todo *Todos) (insertedTodo *Todos, err error)
 	Update(oldParams Todos, updateParams map[string]interface{}) (err error)
@@ -26,6 +31,37 @@ type ITodos interface {
 
 func GetNewTodo() *Todos {
 	return &Todos{}
+}
+
+func (m *Todos) FindByQuery(params *definition.GetTodosParam, userId string) (todos []Todos, err error) {
+	query := db.Where("user_id = ?", userId)
+	query = buildFindByQuery(query, params)
+
+	err = query.Offset(params.Offset).
+		Limit(params.Limit).
+		Order(fmt.Sprintf("created_at %s", params.Sort)).
+		Scan(&todos).Error
+	return
+}
+
+func buildFindByQuery(query *gorm.DB, params *definition.GetTodosParam) *gorm.DB {
+	if params.Title != "" {
+		query = query.Where("title LIKE ?", "%"+params.Title+"%")
+	}
+	if params.Body != "" {
+		query = query.Where("body LIKE ?", "%"+params.Body+"%")
+	}
+	if params.Status != "" {
+		query = query.Where("status = ?", params.Status)
+	}
+	return query
+}
+
+func (m *Todos) GetTotalCount(params *definition.GetTodosParam, userId string) (count int, err error) {
+	query := db.Where("user_id = ?", userId)
+	query = buildFindByQuery(query, params)
+	err = query.Count(&count).Error
+	return
 }
 
 func (m *Todos) FindById(id int64) (todo Todos, err error) {
