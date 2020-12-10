@@ -34,7 +34,7 @@ func (c *User) PostSigninUser(ctx echo.Context) (response *Response) {
 	return c.FormatResult(&result, ctx)
 }
 
-func (c *User) PostUser(ctx echo.Context) (response *Response) {
+func (c *User) PostSignupUser(ctx echo.Context) (response *Response) {
 	defer func() {
 		if e := recover(); e != nil {
 			c.ServerErrorException(errors.New(""), fmt.Sprintf("%+v", e))
@@ -43,13 +43,13 @@ func (c *User) PostUser(ctx echo.Context) (response *Response) {
 		}
 	}()
 
-	body, err := definition.CreatePostUserRequestBody(ctx)
+	body, err := definition.CreatePostSignupUserRequestBody(ctx)
 	if err != nil {
 		c.ValidationException(err, err.Error())
 		return c.FormatResult(&c.Result, ctx)
 	}
 
 	service := domain.GetNewUserService()
-	result := service.PostUser(body)
+	result := service.PostSignupUser(body)
 	return c.FormatResult(&result, ctx)
 }
