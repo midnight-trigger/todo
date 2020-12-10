@@ -130,6 +130,47 @@ func (s *Todo) PutTodo(param *definition.PutTodoParam, body *definition.PutTodoR
 	return
 }
 
+func (s *Todo) PatchTodo(param *definition.PatchTodoParam, body *definition.PatchTodoRequestBody, userId string) (r Result) {
+	r.New()
+
+	// Todo存在チェック
+	oldParams, err := s.MTodos.FindById(param.TodoId)
+	if gorm.IsRecordNotFoundError(err) {
+		r.TodoNotFoundException(errors.New(""))
+		logger.L.Error(r.ErrMessage)
+		return
+	}
+	if err != nil {
+		r.ServerErrorException(errors.New(""), err.Error())
+		logger.L.Error(err)
+		return
+	}
+
+	// ログイン中ユーザのDB更新権限チェック
+	if oldParams.UserId != userId {
+		r.UserIsNotOwnerException(errors.New(""))
+		logger.L.Error(r.ErrMessage)
+		return
+	}
+
+	// DB更新
+	updateParam := map[string]interface{}{
+		"Status": body.Status,
+	}
+	err = s.MTodos.Update(oldParams, updateParam)
+	if err != nil {
+		r.ServerErrorException(err, err.Error())
+		logger.L.Error(err)
+		return
+	}
+
+	response := new(definition.PatchTodoResponse)
+	s.SetStructOnSameField(oldParams, response)
+	s.SetStructOnSameField(body, response)
+	r.Data = response
+	return
+}
+
 func (s *Todo) DeleteTodo(param *definition.DeleteTodoParam, userId string) (r Result) {
 	r.New()
 
