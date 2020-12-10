@@ -8,12 +8,12 @@ import (
 )
 
 type GetTodosParam struct {
-	Limit  int    `query:"limit" validate:"required"`
-	Offset int    `query:"offset" validate:"required"`
-	Sort   string `query:"sort" validate:"required,oneof=DESC ASC"`
+	Limit  int    `query:"limit"`
+	Offset int    `query:"offset"`
+	Sort   string `query:"sort" validate:"oneof=DESC ASC"`
 	Title  string `query:"title" validate:"lte=255"`
 	Body   string `query:"body"`
-	Status string `query:"status" validate:"required,oneof=todo progress finished"`
+	Status string `query:"status" validate:"oneof='' todo progress finished"`
 }
 
 type GetTodosResponse struct {
@@ -34,6 +34,9 @@ func CreateGetTodosParam(ctx echo.Context) (params *GetTodosParam, err error) {
 	}
 	if params.Limit == 0 {
 		params.Limit = viper.GetInt("todos.listLimit")
+	}
+	if params.Sort == "" {
+		params.Sort = "DESC"
 	}
 	if message, ok := Validator(params); !ok {
 		err = errors.New(message)

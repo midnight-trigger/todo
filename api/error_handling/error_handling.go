@@ -69,12 +69,6 @@ func GetValidationErrorMessage(field string, tag string, params string) (message
 	switch tag {
 	case "required":
 		switch field {
-		case "Limit":
-			message = "リミットは必須です"
-		case "Offset":
-			message = "オフセットは必須です"
-		case "Sort":
-			message = "ソートは必須です"
 		case "Username":
 			message = "ユーザ名は必須です"
 		case "Email":
@@ -85,8 +79,6 @@ func GetValidationErrorMessage(field string, tag string, params string) (message
 			message = "Todoタイトルは必須です"
 		case "Body":
 			message = "Todo詳細は必須です"
-		case "Status":
-			message = "ステータスは必須です"
 		}
 	case "email":
 		switch field {
