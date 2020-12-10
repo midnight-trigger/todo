@@ -6,6 +6,7 @@ package mock_mysql
 
 import (
 	gomock "github.com/golang/mock/gomock"
+	definition "github.com/midnight-trigger/todo/api/definition"
 	mysql "github.com/midnight-trigger/todo/infra/mysql"
 	reflect "reflect"
 )
@@ -31,6 +32,36 @@ func NewMockITodos(ctrl *gomock.Controller) *MockITodos {
 // EXPECT returns an object that allows the caller to indicate expected use
 func (m *MockITodos) EXPECT() *MockITodosMockRecorder {
 	return m.recorder
+}
+
+// FindByQuery mocks base method
+func (m *MockITodos) FindByQuery(params *definition.GetTodosParam, userId string) ([]mysql.Todos, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "FindByQuery", params, userId)
+	ret0, _ := ret[0].([]mysql.Todos)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// FindByQuery indicates an expected call of FindByQuery
+func (mr *MockITodosMockRecorder) FindByQuery(params, userId interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "FindByQuery", reflect.TypeOf((*MockITodos)(nil).FindByQuery), params, userId)
+}
+
+// GetTotalCount mocks base method
+func (m *MockITodos) GetTotalCount(params *definition.GetTodosParam, userId string) (int, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetTotalCount", params, userId)
+	ret0, _ := ret[0].(int)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetTotalCount indicates an expected call of GetTotalCount
+func (mr *MockITodosMockRecorder) GetTotalCount(params, userId interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetTotalCount", reflect.TypeOf((*MockITodos)(nil).GetTotalCount), params, userId)
 }
 
 // FindById mocks base method

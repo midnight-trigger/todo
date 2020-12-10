@@ -99,6 +99,13 @@ func GetValidationErrorMessage(field string, tag string, params string) (message
 		case "Title":
 			message = fmt.Sprintf("Todoタイトルは%s文字以内で入力してください", params)
 		}
+	case "oneof":
+		switch field {
+		case "Sort":
+			message = "ソートはDESC, ASCのいずれかで入力してください"
+		case "Status":
+			message = "ステータスはtodo, progress, finishedのいずれかで入力してください"
+		}
 	}
 	return
 }
