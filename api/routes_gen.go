@@ -16,6 +16,7 @@ func RegisterAuthRoutes(e *echo.Group) {
 	GetTodos(e, &controller.Todo{})
 	PostTodo(e, &controller.Todo{})
 	PutTodo(e, &controller.Todo{})
+	PatchTodo(e, &controller.Todo{})
 	DeleteTodo(e, &controller.Todo{})
 }
 func PostSigninUser(
@@ -72,6 +73,19 @@ func PutTodo(
 			return c.JSON(r.Code, r)
 		}
 		res := inter.PutTodo(c, claims)
+		return c.JSON(res.Meta.Code, res)
+	})
+}
+func PatchTodo(
+	e *echo.Group,
+	inter *controller.Todo,
+) {
+	e.PATCH("api/v1/todos/:todoId", func(c echo.Context) error {
+		claims, r := jwt.GetJWTClaims(c)
+		if claims == nil {
+			return c.JSON(r.Code, r)
+		}
+		res := inter.PatchTodo(c, claims)
 		return c.JSON(res.Meta.Code, res)
 	})
 }
