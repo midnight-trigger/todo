@@ -38,7 +38,7 @@ func (s *User) PostSigninUser(body *definition.PostSigninUserRequestBody) (r Res
 	return
 }
 
-func (s *User) PostUser(body *definition.PostUserRequestBody) (r Result) {
+func (s *User) PostSignupUser(body *definition.PostSignupUserRequestBody) (r Result) {
 	r.New()
 
 	// Cognitoサインアップ
@@ -61,7 +61,7 @@ func (s *User) PostUser(body *definition.PostUserRequestBody) (r Result) {
 		return
 	}
 
-	response := new(definition.PostUserResponse)
+	response := new(definition.PostSignupUserResponse)
 	response.Id = *cognito.UserSub
 	response.Username = user.Username
 

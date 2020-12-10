@@ -9,8 +9,8 @@ import (
 )
 
 func RegisterRoutes(e *echo.Echo) {
+	PostSignupUser(e, &controller.User{})
 	PostSigninUser(e, &controller.User{})
-	PostUser(e, &controller.User{})
 }
 func RegisterAuthRoutes(e *echo.Group) {
 	GetTodos(e, &controller.Todo{})
@@ -19,21 +19,21 @@ func RegisterAuthRoutes(e *echo.Group) {
 	PatchTodo(e, &controller.Todo{})
 	DeleteTodo(e, &controller.Todo{})
 }
+func PostSignupUser(
+	e *echo.Echo,
+	inter *controller.User,
+) {
+	e.POST("api/v1/users/signup", func(c echo.Context) error {
+		res := inter.PostSignupUser(c)
+		return c.JSON(res.Meta.Code, res)
+	})
+}
 func PostSigninUser(
 	e *echo.Echo,
 	inter *controller.User,
 ) {
 	e.POST("api/v1/users/signin", func(c echo.Context) error {
 		res := inter.PostSigninUser(c)
-		return c.JSON(res.Meta.Code, res)
-	})
-}
-func PostUser(
-	e *echo.Echo,
-	inter *controller.User,
-) {
-	e.POST("api/v1/users", func(c echo.Context) error {
-		res := inter.PostUser(c)
 		return c.JSON(res.Meta.Code, res)
 	})
 }

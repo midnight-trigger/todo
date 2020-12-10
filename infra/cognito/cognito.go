@@ -9,7 +9,7 @@ import (
 	"github.com/midnight-trigger/todo/api/definition"
 )
 
-func SignUp(body *definition.PostUserRequestBody) (response *cognitoidentityprovider.SignUpOutput, err error) {
+func SignUp(body *definition.PostSignupUserRequestBody) (response *cognitoidentityprovider.SignUpOutput, err error) {
 	svc := cognitoidentityprovider.New(
 		session.New(),
 		&aws.Config{Region: aws.String(os.Getenv("AWS_REGION"))},
