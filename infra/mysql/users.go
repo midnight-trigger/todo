@@ -12,7 +12,7 @@ type Users struct {
 	DeletedAt *time.Time `gorm:"type:datetime"`
 }
 
-//go:generate mockgen -source users.go -destination mock/mock_users.go
+//go:generate mockgen -source users.go -destination mock_mysql/mock_users.go
 type IUsers interface {
 	FindById(id string) (user Users, err error)
 	Create(user *Users) (err error)

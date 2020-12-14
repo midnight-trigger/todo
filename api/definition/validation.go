@@ -1,7 +1,10 @@
 package definition
 
 import (
+	"github.com/labstack/echo"
 	"github.com/midnight-trigger/todo/api/error_handling"
+	"github.com/midnight-trigger/todo/configs"
+	"github.com/midnight-trigger/todo/logger"
 
 	"github.com/go-playground/validator/v10"
 )
@@ -26,6 +29,12 @@ func Validator(inputParams interface{}) (errMessage string, ok bool) {
 			return
 		}
 	}
+	return
+}
 
+func TestInit() (e *echo.Echo) {
+	e = echo.New()
+	configs.Init("test")
+	logger.Init("test")
 	return
 }

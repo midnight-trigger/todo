@@ -3,9 +3,13 @@ package domain
 import (
 	"net/http"
 	"reflect"
+	"testing"
 	"time"
 
+	"github.com/golang/mock/gomock"
 	"github.com/midnight-trigger/todo/api/error_handling"
+	"github.com/midnight-trigger/todo/configs"
+	"github.com/midnight-trigger/todo/logger"
 )
 
 type Base struct {
@@ -72,4 +76,12 @@ func (b *Base) SliceFind(slice interface{}, val interface{}) bool {
 		}
 	}
 	return false
+}
+
+func (b *Base) TestInit(t *testing.T) (ctrl *gomock.Controller) {
+	ctrl = gomock.NewController(t)
+	defer ctrl.Finish()
+	configs.Init("test")
+	logger.Init("test")
+	return
 }

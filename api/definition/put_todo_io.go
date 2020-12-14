@@ -9,7 +9,7 @@ import (
 )
 
 type PutTodoParam struct {
-	TodoId int64 `validate:"required"`
+	TodoId int64
 }
 
 type PutTodoRequestBody struct {
@@ -31,11 +31,6 @@ func CreatePutTodoRequestBodyAndParam(ctx echo.Context) (param *PutTodoParam, bo
 	todoId := ctx.Param("todoId")
 	param = new(PutTodoParam)
 	param.TodoId, _ = strconv.ParseInt(todoId, 10, 64)
-	if message, ok := Validator(param); !ok {
-		err = errors.New(message)
-		logger.L.Error(message)
-		return
-	}
 
 	body = new(PutTodoRequestBody)
 	if err = ctx.Bind(body); err != nil {

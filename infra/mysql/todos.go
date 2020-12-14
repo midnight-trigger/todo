@@ -19,7 +19,7 @@ type Todos struct {
 	DeletedAt *time.Time `gorm:"type:datetime"`
 }
 
-//go:generate mockgen -source todos.go -destination mock/mock_todos.go
+//go:generate mockgen -source todos.go -destination mock_mysql/mock_todos.go
 type ITodos interface {
 	FindByQuery(params *definition.GetTodosParam, userId string) (todos []Todos, err error)
 	GetTotalCount(params *definition.GetTodosParam, userId string) (total int, err error)
@@ -76,12 +76,12 @@ func (m *Todos) FindById(id int64) (todo Todos, err error) {
 func (m *Todos) Create(todo *Todos) (insertedTodo *Todos, err error) {
 	err = db.Create(todo).Error
 	insertedTodo = todo
+	fmt.Println(insertedTodo)
 	return
 }
 
 func (m *Todos) Update(oldParams Todos, updateParams map[string]interface{}) (err error) {
 	err = db.Model(&oldParams).Updates(updateParams).Error
-	fmt.Println(oldParams)
 	return
 }
 
