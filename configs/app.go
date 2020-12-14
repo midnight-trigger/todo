@@ -8,8 +8,8 @@ import (
 
 var runtimeEnv string
 
-func Init() {
-	err := loadConfig()
+func Init(runtime string) {
+	err := loadConfig(runtime)
 	if err != nil {
 		panic(err)
 	}
@@ -19,13 +19,18 @@ func IsLocal() bool {
 	return runtimeEnv == "local"
 }
 
-func loadConfig() error {
+func loadConfig(runtime string) error {
 	runtimeEnv = os.Getenv("APP_ENV")
 
 	filename := runtimeEnv
 	viper.SetConfigName(filename)
 	viper.SetConfigType("yaml")
-	viper.AddConfigPath("./configs/environment")
+	switch runtime {
+	case "":
+		viper.AddConfigPath("./configs/environment")
+	case "test":
+		viper.AddConfigPath("../../configs/environment")
+	}
 	err := viper.ReadInConfig()
 	return err
 }
