@@ -15,7 +15,9 @@ type Todo struct {
 	Base
 }
 
+// Todo検索・一覧取得
 func (c *Todo) GetTodos(ctx echo.Context, claims *jwt.Claims) (response *Response) {
+	// panicエラー発生時のハンドリング
 	defer func() {
 		if e := recover(); e != nil {
 			c.ServerErrorException(errors.New(""), fmt.Sprintf("%+v", e))
@@ -24,18 +26,22 @@ func (c *Todo) GetTodos(ctx echo.Context, claims *jwt.Claims) (response *Respons
 		}
 	}()
 
+	// リクエスト取得
 	params, err := definition.CreateGetTodosParam(ctx)
 	if err != nil {
 		c.ValidationException(err, err.Error())
 		return c.FormatResult(&c.Result, ctx)
 	}
 
+	// ビジネスロジック&レスポンス返却
 	service := domain.GetNewTodoService()
 	result := service.GetTodos(params, claims.UserId)
 	return c.FormatResult(&result, ctx)
 }
 
+// Todo新規作成
 func (c *Todo) PostTodo(ctx echo.Context, claims *jwt.Claims) (response *Response) {
+	// panicエラー発生時のハンドリング
 	defer func() {
 		if e := recover(); e != nil {
 			c.ServerErrorException(errors.New(""), fmt.Sprintf("%+v", e))
@@ -44,18 +50,22 @@ func (c *Todo) PostTodo(ctx echo.Context, claims *jwt.Claims) (response *Respons
 		}
 	}()
 
+	// リクエスト取得
 	body, err := definition.CreatePostTodoRequestBody(ctx)
 	if err != nil {
 		c.ValidationException(err, err.Error())
 		return c.FormatResult(&c.Result, ctx)
 	}
 
+	// ビジネスロジック&レスポンス返却
 	service := domain.GetNewTodoService()
 	result := service.PostTodo(body, claims.UserId)
 	return c.FormatResult(&result, ctx)
 }
 
+// Todo内容更新
 func (c *Todo) PutTodo(ctx echo.Context, claims *jwt.Claims) (response *Response) {
+	// panicエラー発生時のハンドリング
 	defer func() {
 		if e := recover(); e != nil {
 			c.ServerErrorException(errors.New(""), fmt.Sprintf("%+v", e))
@@ -64,18 +74,22 @@ func (c *Todo) PutTodo(ctx echo.Context, claims *jwt.Claims) (response *Response
 		}
 	}()
 
+	// リクエスト取得
 	param, body, err := definition.CreatePutTodoRequestBodyAndParam(ctx)
 	if err != nil {
 		c.ValidationException(err, err.Error())
 		return c.FormatResult(&c.Result, ctx)
 	}
 
+	// ビジネスロジック&レスポンス返却
 	service := domain.GetNewTodoService()
 	result := service.PutTodo(param, body, claims.UserId)
 	return c.FormatResult(&result, ctx)
 }
 
+// Todoステータス更新
 func (c *Todo) PatchTodo(ctx echo.Context, claims *jwt.Claims) (response *Response) {
+	// panicエラー発生時のハンドリング
 	defer func() {
 		if e := recover(); e != nil {
 			c.ServerErrorException(errors.New(""), fmt.Sprintf("%+v", e))
@@ -84,18 +98,22 @@ func (c *Todo) PatchTodo(ctx echo.Context, claims *jwt.Claims) (response *Respon
 		}
 	}()
 
+	// リクエスト取得
 	param, body, err := definition.CreatePatchTodoRequestBodyAndParam(ctx)
 	if err != nil {
 		c.ValidationException(err, err.Error())
 		return c.FormatResult(&c.Result, ctx)
 	}
 
+	// ビジネスロジック&レスポンス返却
 	service := domain.GetNewTodoService()
 	result := service.PatchTodo(param, body, claims.UserId)
 	return c.FormatResult(&result, ctx)
 }
 
+// Todo削除
 func (c *Todo) DeleteTodo(ctx echo.Context, claims *jwt.Claims) (response *Response) {
+	// panicエラー発生時のハンドリング
 	defer func() {
 		if e := recover(); e != nil {
 			c.ServerErrorException(errors.New(""), fmt.Sprintf("%+v", e))
@@ -104,12 +122,14 @@ func (c *Todo) DeleteTodo(ctx echo.Context, claims *jwt.Claims) (response *Respo
 		}
 	}()
 
+	// リクエスト取得
 	param, err := definition.CreateDeleteTodoParam(ctx)
 	if err != nil {
 		c.ValidationException(err, err.Error())
 		return c.FormatResult(&c.Result, ctx)
 	}
 
+	// ビジネスロジック&レスポンス返却
 	service := domain.GetNewTodoService()
 	result := service.DeleteTodo(param, claims.UserId)
 	return c.FormatResult(&result, ctx)

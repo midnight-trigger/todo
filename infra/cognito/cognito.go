@@ -9,7 +9,21 @@ import (
 	"github.com/midnight-trigger/todo/api/definition"
 )
 
-func SignUp(body *definition.PostSignupUserRequestBody) (response *cognitoidentityprovider.SignUpOutput, err error) {
+type Cognito struct {
+}
+
+//go:generate mockgen -source cognito.go -destination mock_cognito/mock_cognito.go
+type ICognito interface {
+	SignUp(body *definition.PostSignupUserRequestBody) (response *cognitoidentityprovider.SignUpOutput, err error)
+	AdminInitiateAuth(body *definition.PostSigninUserRequestBody) (response *cognitoidentityprovider.AdminInitiateAuthOutput, err error)
+}
+
+func GetNewCognito() *Cognito {
+	return &Cognito{}
+}
+
+// Cognito会員登録
+func (m *Cognito) SignUp(body *definition.PostSignupUserRequestBody) (response *cognitoidentityprovider.SignUpOutput, err error) {
 	svc := cognitoidentityprovider.New(
 		session.New(),
 		&aws.Config{Region: aws.String(os.Getenv("AWS_REGION"))},
@@ -20,11 +34,11 @@ func SignUp(body *definition.PostSignupUserRequestBody) (response *cognitoidenti
 	params.Password = aws.String(body.Password)
 	params.Username = aws.String(body.Email)
 	response, err = svc.SignUp(params)
-
 	return
 }
 
-func AdminInitiateAuth(body *definition.PostSigninUserRequestBody) (response *cognitoidentityprovider.AdminInitiateAuthOutput, err error) {
+// Cognitoログイン
+func (m *Cognito) AdminInitiateAuth(body *definition.PostSigninUserRequestBody) (response *cognitoidentityprovider.AdminInitiateAuthOutput, err error) {
 	svc := cognitoidentityprovider.New(
 		session.New(),
 		&aws.Config{Region: aws.String(os.Getenv("AWS_REGION"))},
@@ -38,8 +52,6 @@ func AdminInitiateAuth(body *definition.PostSigninUserRequestBody) (response *co
 	}
 	params.ClientId = aws.String(os.Getenv("APPLICATION_CLIENT"))
 	params.UserPoolId = aws.String(os.Getenv("USER_POOL_ID"))
-
 	response, err = svc.AdminInitiateAuth(params)
-
 	return
 }

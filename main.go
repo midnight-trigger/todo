@@ -32,9 +32,9 @@ func main() {
 		AllowOrigins: []string{"*"},
 	}))
 
-	configs.Init()
+	configs.Init("")
 	infra.Init()
-	logger.Init()
+	logger.Init("")
 
 	defer mysql.Orm().Close()
 

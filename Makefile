@@ -9,4 +9,5 @@ vendor:
 	go mod vendor -v
 
 tests:
-	go test ./test -v
+	go test ./api/definition -v
+	go test ./api/domain -v

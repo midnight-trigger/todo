@@ -22,10 +22,11 @@ func GetNewTodoService() *Todo {
 	return todo
 }
 
+// Todo検索・一覧取得
 func (s *Todo) GetTodos(params *definition.GetTodosParam, userId string) (r Result) {
 	r.New()
 
-	// 検索条件をもとにTodo一覧を取得
+	// 検索条件（クエリパラメータ）をもとにTodoを検索・一覧を取得
 	todos, err := s.MTodos.FindByQuery(params, userId)
 	if err != nil {
 		r.ServerErrorException(errors.New(""), err.Error())
@@ -33,6 +34,7 @@ func (s *Todo) GetTodos(params *definition.GetTodosParam, userId string) (r Resu
 		return
 	}
 
+	// レスポンス作成
 	var responses []*definition.GetTodosResponse
 	for _, todo := range todos {
 		response := new(definition.GetTodosResponse)
@@ -44,6 +46,7 @@ func (s *Todo) GetTodos(params *definition.GetTodosParam, userId string) (r Resu
 	pagination := new(Pagination)
 	s.SetStructOnSameField(params, pagination)
 
+	// 検索条件に一致するTodo数を取得・レスポンスに含める
 	pagination.Total, err = s.MTodos.GetTotalCount(params, userId)
 	if err != nil {
 		r.ServerErrorException(errors.New(""), err.Error())
@@ -54,10 +57,11 @@ func (s *Todo) GetTodos(params *definition.GetTodosParam, userId string) (r Resu
 	return
 }
 
+// Todo新規作成
 func (s *Todo) PostTodo(body *definition.PostTodoRequestBody, userId string) (r Result) {
 	r.New()
 
-	// jwtの持ち主のDB存在チェック
+	// jwtから解析したユーザIDがDBに存在するかチェック
 	_, err := s.MUsers.FindById(userId)
 	if gorm.IsRecordNotFoundError(err) {
 		r.UserNotFoundException(errors.New(""))
@@ -82,16 +86,18 @@ func (s *Todo) PostTodo(body *definition.PostTodoRequestBody, userId string) (r 
 		return
 	}
 
+	// レスポンス作成
 	response := new(definition.PostTodoResponse)
 	s.SetStructOnSameField(insertedTodo, response)
 	r.Data = response
 	return
 }
 
+// Todo内容更新
 func (s *Todo) PutTodo(param *definition.PutTodoParam, body *definition.PutTodoRequestBody, userId string) (r Result) {
 	r.New()
 
-	// Todo存在チェック
+	// TodoId（パスパラメータ）に紐づくTodoがDBに存在するかチェック
 	oldParams, err := s.MTodos.FindById(param.TodoId)
 	if gorm.IsRecordNotFoundError(err) {
 		r.TodoNotFoundException(errors.New(""))
@@ -123,6 +129,7 @@ func (s *Todo) PutTodo(param *definition.PutTodoParam, body *definition.PutTodoR
 		return
 	}
 
+	// レスポンス作成
 	response := new(definition.PutTodoResponse)
 	s.SetStructOnSameField(oldParams, response)
 	s.SetStructOnSameField(body, response)
@@ -130,10 +137,11 @@ func (s *Todo) PutTodo(param *definition.PutTodoParam, body *definition.PutTodoR
 	return
 }
 
+// Todoステータス更新
 func (s *Todo) PatchTodo(param *definition.PatchTodoParam, body *definition.PatchTodoRequestBody, userId string) (r Result) {
 	r.New()
 
-	// Todo存在チェック
+	// TodoId（パスパラメータ）に紐づくTodoがDBに存在するかチェック
 	oldParams, err := s.MTodos.FindById(param.TodoId)
 	if gorm.IsRecordNotFoundError(err) {
 		r.TodoNotFoundException(errors.New(""))
@@ -164,6 +172,7 @@ func (s *Todo) PatchTodo(param *definition.PatchTodoParam, body *definition.Patc
 		return
 	}
 
+	// レスポンス作成
 	response := new(definition.PatchTodoResponse)
 	s.SetStructOnSameField(oldParams, response)
 	s.SetStructOnSameField(body, response)
@@ -171,10 +180,11 @@ func (s *Todo) PatchTodo(param *definition.PatchTodoParam, body *definition.Patc
 	return
 }
 
+// Todo削除
 func (s *Todo) DeleteTodo(param *definition.DeleteTodoParam, userId string) (r Result) {
 	r.New()
 
-	// Todo存在チェック
+	// TodoId（パスパラメータ）に紐づくTodoがDBに存在するかチェック
 	todo, err := s.MTodos.FindById(param.TodoId)
 	if gorm.IsRecordNotFoundError(err) {
 		r.TodoNotFoundException(errors.New(""))
@@ -202,6 +212,7 @@ func (s *Todo) DeleteTodo(param *definition.DeleteTodoParam, userId string) (r R
 		return
 	}
 
+	// レスポンス作成
 	response := new(definition.DeleteTodoResponse)
 	response.Id = param.TodoId
 	r.Data = response

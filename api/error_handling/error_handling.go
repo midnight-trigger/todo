@@ -97,18 +97,18 @@ func GetValidationErrorMessage(field string, tag string, params string) (message
 	case "lte":
 		switch field {
 		case "Username":
-			message = fmt.Sprintf("ユーザ名は%s文字以内で入力してください", params)
+			message = fmt.Sprintf("ユーザ名は%s文字以内で入力して下さい", params)
 		case "Password":
-			message = fmt.Sprintf("パスワードは%s文字以内で入力してください", params)
+			message = fmt.Sprintf("パスワードは%s文字以内で入力して下さい", params)
 		case "Title":
-			message = fmt.Sprintf("Todoタイトルは%s文字以内で入力してください", params)
+			message = fmt.Sprintf("Todoタイトルは%s文字以内で入力して下さい", params)
 		}
 	case "oneof":
 		switch field {
 		case "Sort":
-			message = "ソートはDESC, ASCのいずれかで入力してください"
+			message = "ソートはDESC, ASCのいずれかで入力して下さい"
 		case "Status":
-			message = "ステータスはtodo, progress, finishedのいずれかで入力してください"
+			message = "ステータスはtodo, progress, finishedのいずれかで入力して下さい"
 		}
 	}
 	return

@@ -15,15 +15,15 @@ import (
 
 var L *zap.SugaredLogger
 
-func Init() {
-	Logger, err := newLogger("./log/", "log", "0 0 * * *")
+func Init(runtime string) {
+	Logger, err := newLogger("./log/", "log", "0 0 * * *", runtime)
 	if err != nil {
 		log.Fatal(err)
 	}
 	L = Logger
 }
 
-func newLogger(path, fileName, schedule string) (*zap.SugaredLogger, error) {
+func newLogger(path, fileName, schedule, runtime string) (*zap.SugaredLogger, error) {
 	c := cron.New()
 
 	cronLogger := &autoDailyLogger{
@@ -36,7 +36,7 @@ func newLogger(path, fileName, schedule string) (*zap.SugaredLogger, error) {
 	//c.AddFunc(schedule, cronLogger.setOutputFile)
 	//c.Start()
 
-	return cronLogger.getLogger()
+	return cronLogger.getLogger(runtime)
 }
 
 type fileWrite struct {
@@ -68,12 +68,17 @@ func (a *autoDailyLogger) setOutputFile() {
 	}
 }
 
-func (a *autoDailyLogger) getLogger() (*zap.SugaredLogger, error) {
+func (a *autoDailyLogger) getLogger(runtime string) (*zap.SugaredLogger, error) {
 
 	var config zap.Config
 	var loggerConfig []byte
 	var err error
-	loggerConfig, err = ioutil.ReadFile("./configs/log/test.yml")
+	switch runtime {
+	case "":
+		loggerConfig, err = ioutil.ReadFile("./configs/log/test.yml")
+	case "test":
+		loggerConfig, err = ioutil.ReadFile("../../configs/log/test.yml")
+	}
 	if err != nil {
 		log.Fatal(err)
 	}

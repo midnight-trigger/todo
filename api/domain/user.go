@@ -11,26 +11,30 @@ import (
 
 type User struct {
 	Base
-	MUsers mysql.IUsers
+	MUsers   mysql.IUsers
+	MCognito cognito.ICognito
 }
 
 func GetNewUserService() *User {
 	user := new(User)
 	user.MUsers = mysql.GetNewUser()
+	user.MCognito = cognito.GetNewCognito()
 	return user
 }
 
+// ログイン
 func (s *User) PostSigninUser(body *definition.PostSigninUserRequestBody) (r Result) {
 	r.New()
 
-	// Cognitoサインイン
-	cognito, err := cognito.AdminInitiateAuth(body)
+	// Cognitoログイン
+	cognito, err := s.MCognito.AdminInitiateAuth(body)
 	if err != nil {
 		r.CognitoErrorFoundException(errors.New(""), err.Error())
 		logger.L.Error(err)
 		return
 	}
 
+	// レスポンス作成
 	response := new(definition.PostSigninUserResponse)
 	response.IdToken = *cognito.AuthenticationResult.IdToken
 
@@ -38,11 +42,12 @@ func (s *User) PostSigninUser(body *definition.PostSigninUserRequestBody) (r Res
 	return
 }
 
+// 会員登録
 func (s *User) PostSignupUser(body *definition.PostSignupUserRequestBody) (r Result) {
 	r.New()
 
 	// Cognitoサインアップ
-	cognito, err := cognito.SignUp(body)
+	cognito, err := s.MCognito.SignUp(body)
 	if err != nil {
 		r.CognitoErrorFoundException(errors.New(""), err.Error())
 		logger.L.Error(err)
@@ -54,16 +59,16 @@ func (s *User) PostSignupUser(body *definition.PostSignupUserRequestBody) (r Res
 	s.SetStructOnSameField(body, user)
 	user.Id = *cognito.UserSub
 
-	err = s.MUsers.Create(user)
+	createdUser, err := s.MUsers.Create(user)
 	if err != nil {
-		r.ServerErrorException(err, err.Error())
+		r.ServerErrorException(errors.New(""), err.Error())
 		logger.L.Error(err)
 		return
 	}
 
+	// レスポンス作成
 	response := new(definition.PostSignupUserResponse)
-	response.Id = *cognito.UserSub
-	response.Username = user.Username
+	s.SetStructOnSameField(createdUser, response)
 
 	r.Data = response
 	return
