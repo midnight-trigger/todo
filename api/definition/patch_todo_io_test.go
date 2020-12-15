@@ -17,10 +17,13 @@ func TestCreatePatchTodoRequestBodyAndParam_正常系(t *testing.T) {
 		"status": "progress"
 	}`
 
-	req := httptest.NewRequest(http.MethodPatch, "/api/v1/todos/:todoId", strings.NewReader(data))
+	req := httptest.NewRequest(http.MethodPatch, "/", strings.NewReader(data))
 	req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
 	rec := httptest.NewRecorder()
 	c := e.NewContext(req, rec)
+	c.SetPath("/api/v1/todos/:todoId")
+	c.SetParamNames("todoId")
+	c.SetParamValues("1")
 
 	_, result, err := CreatePatchTodoRequestBodyAndParam(c)
 	assert.NoError(t, err)
@@ -47,19 +50,25 @@ func TestCreatePatchTodoRequestBodyAndParam_required(t *testing.T) {
 
 	for index, value := range data {
 		if index == len(data)-1 {
-			req := httptest.NewRequest(http.MethodPatch, "/api/v1/todos/:todoId", strings.NewReader(value))
+			req := httptest.NewRequest(http.MethodPatch, "/", strings.NewReader(value))
 			req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
 			rec := httptest.NewRecorder()
 			c := e.NewContext(req, rec)
+			c.SetPath("/api/v1/todos/:todoId")
+			c.SetParamNames("todoId")
+			c.SetParamValues("1")
 
 			_, result, err := CreatePatchTodoRequestBodyAndParam(c)
 			assert.NoError(t, err)
 			assert.IsType(t, &PatchTodoRequestBody{}, result)
 		} else {
-			req := httptest.NewRequest(http.MethodPatch, "/api/v1/todos/:todoId", strings.NewReader(value))
+			req := httptest.NewRequest(http.MethodPatch, "/", strings.NewReader(value))
 			req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
 			rec := httptest.NewRecorder()
 			c := e.NewContext(req, rec)
+			c.SetPath("/api/v1/todos/:todoId")
+			c.SetParamNames("todoId")
+			c.SetParamValues("1")
 
 			_, _, err := CreatePatchTodoRequestBodyAndParam(c)
 			assert.EqualError(t, errors.New("ステータスは必須です"), err.Error())
@@ -88,19 +97,25 @@ func TestCreatePatchTodoRequestBodyAndParam_oneof(t *testing.T) {
 
 	for index, value := range data {
 		if index != 0 {
-			req := httptest.NewRequest(http.MethodPatch, "/api/v1/todos/:todoId", strings.NewReader(value))
+			req := httptest.NewRequest(http.MethodPatch, "/", strings.NewReader(value))
 			req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
 			rec := httptest.NewRecorder()
 			c := e.NewContext(req, rec)
+			c.SetPath("/api/v1/todos/:todoId")
+			c.SetParamNames("todoId")
+			c.SetParamValues("1")
 
 			_, result, err := CreatePatchTodoRequestBodyAndParam(c)
 			assert.NoError(t, err)
 			assert.IsType(t, &PatchTodoRequestBody{}, result)
 		} else {
-			req := httptest.NewRequest(http.MethodPatch, "/api/v1/todos/:todoId", strings.NewReader(value))
+			req := httptest.NewRequest(http.MethodPatch, "/", strings.NewReader(value))
 			req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
 			rec := httptest.NewRecorder()
 			c := e.NewContext(req, rec)
+			c.SetPath("/api/v1/todos/:todoId")
+			c.SetParamNames("todoId")
+			c.SetParamValues("1")
 
 			_, _, err := CreatePatchTodoRequestBodyAndParam(c)
 			assert.EqualError(t, errors.New("ステータスはtodo, progress, finishedのいずれかで入力して下さい"), err.Error())

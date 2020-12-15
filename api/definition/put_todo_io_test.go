@@ -18,10 +18,13 @@ func TestCreatePutTodoRequestBodyAndParam_正常系(t *testing.T) {
 		"body": "Test Body"
 	}`
 
-	req := httptest.NewRequest(http.MethodPut, "/api/v1/todos/:todoId", strings.NewReader(data))
+	req := httptest.NewRequest(http.MethodPut, "/", strings.NewReader(data))
 	req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
 	rec := httptest.NewRecorder()
 	c := e.NewContext(req, rec)
+	c.SetPath("/api/v1/todos/:todoId")
+	c.SetParamNames("todoId")
+	c.SetParamValues("1")
 
 	_, result, err := CreatePutTodoRequestBodyAndParam(c)
 	assert.NoError(t, err)
@@ -63,19 +66,25 @@ func TestCreatePutTodoRequestBodyAndParam_required(t *testing.T) {
 		switch element {
 		case "title":
 			for _, v := range value {
-				req := httptest.NewRequest(http.MethodPut, "/api/v1//todos/:todoId", strings.NewReader(v))
+				req := httptest.NewRequest(http.MethodPut, "/", strings.NewReader(v))
 				req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
 				rec := httptest.NewRecorder()
 				c := e.NewContext(req, rec)
+				c.SetPath("/api/v1/todos/:todoId")
+				c.SetParamNames("todoId")
+				c.SetParamValues("1")
 				_, _, err := CreatePutTodoRequestBodyAndParam(c)
 				assert.EqualError(t, errors.New("Todoタイトルは必須です"), err.Error())
 			}
 		case "body":
 			for _, v := range value {
-				req := httptest.NewRequest(http.MethodPut, "/api/v1//todos/:todoId", strings.NewReader(v))
+				req := httptest.NewRequest(http.MethodPut, "/", strings.NewReader(v))
 				req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
 				rec := httptest.NewRecorder()
 				c := e.NewContext(req, rec)
+				c.SetPath("/api/v1/todos/:todoId")
+				c.SetParamNames("todoId")
+				c.SetParamValues("1")
 				_, _, err := CreatePutTodoRequestBodyAndParam(c)
 				assert.EqualError(t, errors.New("Todo詳細は必須です"), err.Error())
 			}
@@ -100,10 +109,13 @@ func TestCreatePutTodoRequestBody_lte(t *testing.T) {
 
 	for index, value := range data {
 		if index != 0 {
-			req := httptest.NewRequest(http.MethodPut, "/api/v1/todos/:todoId", strings.NewReader(value))
+			req := httptest.NewRequest(http.MethodPut, "/", strings.NewReader(value))
 			req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
 			rec := httptest.NewRecorder()
 			c := e.NewContext(req, rec)
+			c.SetPath("/api/v1/todos/:todoId")
+			c.SetParamNames("todoId")
+			c.SetParamValues("1")
 
 			_, result, err := CreatePutTodoRequestBodyAndParam(c)
 			assert.NoError(t, err)
@@ -113,6 +125,9 @@ func TestCreatePutTodoRequestBody_lte(t *testing.T) {
 			req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
 			rec := httptest.NewRecorder()
 			c := e.NewContext(req, rec)
+			c.SetPath("/api/v1/todos/:todoId")
+			c.SetParamNames("todoId")
+			c.SetParamValues("1")
 
 			_, _, err := CreatePutTodoRequestBodyAndParam(c)
 			assert.EqualError(t, errors.New("Todoタイトルは255文字以内で入力して下さい"), err.Error())
