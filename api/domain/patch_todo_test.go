@@ -114,7 +114,7 @@ func TestPatchTodo_ログインユーザにDB更新権限が無い場合エラ�
 	assert.Equal(t, *expect, result.ErrorHandling)
 }
 
-func TestPatchTodo_サーバで問題が起きた場合サーバエラーを返すか検証(t *testing.T) {
+func TestPatchTodo_サーバで問題が起きた場合エラーを返すか検証(t *testing.T) {
 	s := GetNewTodoService()
 	ctrl := s.TestInit(t)
 

@@ -26,9 +26,7 @@ type Meta struct {
 	ErrorMessage string `json:"error_message"`
 }
 
-// FormatResult method
 func (b *Base) FormatResult(r *domain.Result, ctx echo.Context) *Response {
-
 	response := new(Response)
 
 	switch r.Code {
@@ -63,11 +61,4 @@ func (b *Base) FormatResult(r *domain.Result, ctx echo.Context) *Response {
 	}
 
 	return response
-}
-
-func RenderJSON(ctx echo.Context, response *Response) error {
-	if response.Meta.Code < 400 {
-		return ctx.JSON(http.StatusOK, response)
-	}
-	return ctx.JSON(response.Meta.Code, response)
 }

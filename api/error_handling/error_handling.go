@@ -81,6 +81,8 @@ func GetValidationErrorMessage(field string, tag string, params string) (message
 			message = "Todo詳細は必須です"
 		case "Status":
 			message = "ステータスは必須です"
+		case "TodoId":
+			message = "TodoIDは必須です"
 		}
 	case "email":
 		switch field {

@@ -14,6 +14,7 @@ type User struct {
 	Base
 }
 
+// ログイン
 func (c *User) PostSigninUser(ctx echo.Context) (response *Response) {
 	defer func() {
 		if e := recover(); e != nil {
@@ -34,6 +35,7 @@ func (c *User) PostSigninUser(ctx echo.Context) (response *Response) {
 	return c.FormatResult(&result, ctx)
 }
 
+// 会員登録
 func (c *User) PostSignupUser(ctx echo.Context) (response *Response) {
 	defer func() {
 		if e := recover(); e != nil {

@@ -13,8 +13,10 @@ type PostSignupUserRequestBody struct {
 }
 
 type PostSignupUserResponse struct {
-	Id       string `json:"id"`
-	Username string `json:"username"`
+	Id        string `json:"id"`
+	Username  string `json:"username"`
+	CreatedAt string `json:"created_at"`
+	UpdatedAt string `json:"updated_at"`
 }
 
 func CreatePostSignupUserRequestBody(ctx echo.Context) (body *PostSignupUserRequestBody, err error) {

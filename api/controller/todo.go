@@ -15,6 +15,7 @@ type Todo struct {
 	Base
 }
 
+// Todo検索・一覧取得
 func (c *Todo) GetTodos(ctx echo.Context, claims *jwt.Claims) (response *Response) {
 	defer func() {
 		if e := recover(); e != nil {
@@ -35,6 +36,7 @@ func (c *Todo) GetTodos(ctx echo.Context, claims *jwt.Claims) (response *Respons
 	return c.FormatResult(&result, ctx)
 }
 
+// Todo新規作成
 func (c *Todo) PostTodo(ctx echo.Context, claims *jwt.Claims) (response *Response) {
 	defer func() {
 		if e := recover(); e != nil {
@@ -55,6 +57,7 @@ func (c *Todo) PostTodo(ctx echo.Context, claims *jwt.Claims) (response *Respons
 	return c.FormatResult(&result, ctx)
 }
 
+// Todo内容更新
 func (c *Todo) PutTodo(ctx echo.Context, claims *jwt.Claims) (response *Response) {
 	defer func() {
 		if e := recover(); e != nil {
@@ -75,6 +78,7 @@ func (c *Todo) PutTodo(ctx echo.Context, claims *jwt.Claims) (response *Response
 	return c.FormatResult(&result, ctx)
 }
 
+// Todoステータス更新
 func (c *Todo) PatchTodo(ctx echo.Context, claims *jwt.Claims) (response *Response) {
 	defer func() {
 		if e := recover(); e != nil {
@@ -95,6 +99,7 @@ func (c *Todo) PatchTodo(ctx echo.Context, claims *jwt.Claims) (response *Respon
 	return c.FormatResult(&result, ctx)
 }
 
+// Todo削除
 func (c *Todo) DeleteTodo(ctx echo.Context, claims *jwt.Claims) (response *Response) {
 	defer func() {
 		if e := recover(); e != nil {

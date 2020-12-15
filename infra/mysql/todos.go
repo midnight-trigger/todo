@@ -76,7 +76,6 @@ func (m *Todos) FindById(id int64) (todo Todos, err error) {
 func (m *Todos) Create(todo *Todos) (insertedTodo *Todos, err error) {
 	err = db.Create(todo).Error
 	insertedTodo = todo
-	fmt.Println(insertedTodo)
 	return
 }
 

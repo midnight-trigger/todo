@@ -118,7 +118,7 @@ func TestPutTodo_ログインユーザにDB更新権限が無い場合エラー�
 	assert.Equal(t, *expect, result.ErrorHandling)
 }
 
-func TestPutTodo_サーバで問題が起きた場合サーバエラーを返すか検証(t *testing.T) {
+func TestPutTodo_サーバで問題が起きた場合エラーを返すか検証(t *testing.T) {
 	s := GetNewTodoService()
 	ctrl := s.TestInit(t)
 

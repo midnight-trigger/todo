@@ -85,7 +85,7 @@ func TestPostTodo_jwtから解析したUserIdがDB上に存在しない場合エ
 	assert.Equal(t, *expect, result.ErrorHandling)
 }
 
-func TestPostTodo_サーバで問題が起きた場合サーバエラーを返すか検証(t *testing.T) {
+func TestPostTodo_サーバで問題が起きた場合エラーを返すか検証(t *testing.T) {
 	s := GetNewTodoService()
 	ctrl := s.TestInit(t)
 

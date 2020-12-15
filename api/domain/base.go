@@ -16,11 +16,8 @@ type Base struct {
 }
 
 type Result struct {
-	// field
 	Data       interface{}
 	Pagination *Pagination
-
-	// error
 	error_handling.ErrorHandling
 }
 
@@ -50,32 +47,10 @@ func (b *Base) SetStructOnSameField(fromStruct interface{}, toStruct interface{}
 				to.Field(t.Index[0]).SetString(v)
 			case time.Time:
 				to.Field(t.Index[0]).SetString(v.Format("2006-01-02 15:04:05"))
-			case *time.Time:
-				if v != nil {
-					to.Field(t.Index[0]).SetString(v.Format("2006-01-02 15:04:05"))
-				}
 			}
 		}
 	}
 	return
-}
-
-func (b *Base) SliceFind(slice interface{}, val interface{}) bool {
-	switch val.(type) {
-	case string:
-		for _, item := range slice.([]string) {
-			if item == val {
-				return true
-			}
-		}
-	case int64:
-		for _, item := range slice.([]int64) {
-			if item == val {
-				return true
-			}
-		}
-	}
-	return false
 }
 
 func (b *Base) TestInit(t *testing.T) (ctrl *gomock.Controller) {
