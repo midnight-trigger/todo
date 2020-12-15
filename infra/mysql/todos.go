@@ -36,7 +36,8 @@ func GetNewTodo() *Todos {
 func (m *Todos) FindByQuery(params *definition.GetTodosParam, userId string) (todos []Todos, err error) {
 	query := db.Table("todos").
 		Select("*").
-		Where("user_id = ?", userId)
+		Where("user_id = ?", userId).
+		Where("deleted_at IS NULL")
 	query = buildFindByQuery(query, params)
 
 	err = query.Offset(params.Offset).
@@ -62,7 +63,8 @@ func buildFindByQuery(query *gorm.DB, params *definition.GetTodosParam) *gorm.DB
 func (m *Todos) GetTotalCount(params *definition.GetTodosParam, userId string) (count int, err error) {
 	query := db.Table("todos").
 		Select("*").
-		Where("user_id = ?", userId)
+		Where("user_id = ?", userId).
+		Where("deleted_at IS NULL")
 	query = buildFindByQuery(query, params)
 	err = query.Count(&count).Error
 	return
