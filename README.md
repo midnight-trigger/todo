@@ -1,8 +1,9 @@
 # 使用技術
-バックエンド：Golang（Echo）
-ORM：GORM
-認証基盤：Cognito
-API基盤：API Gateway
+* バックエンド：Golang1.14（Echo）
+* ORM：GORM
+* DB：MySQL8.0.22
+* 認証基盤：Cognito
+* API基盤：API Gateway
 
 # API概要
 https://junya-it-nishi.atlassian.net/wiki/spaces/JN/pages/294913/Todo+REST+API
