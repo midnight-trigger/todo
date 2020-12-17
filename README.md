@@ -10,6 +10,31 @@ https://junya-it-nishi.atlassian.net/wiki/spaces/JN/pages/294913/Todo+REST+API
 
 ※Confluenceのログインが必要
 
+# ディレクトリ構成
+```
+├── api
+│   ├── controller
+│   ├── definition
+│   ├── domain
+│   └── error_handing
+├── configs
+├── dev_tools
+├── infra
+├── logger
+└── third_party
+```
+* `api` : API関係
+   * controller： API Controller
+   * definition： API リクエスト/レスポンス構造体定義
+   * domain： API ビジネスロジック
+   * error_handing： API エラー処理
+   * route.go, route_gen/go: ルーティング関連
+* `configs` : 環境毎（local, dev, qa, stg prod etc...）の定義ファイルなど
+* `dev_tools` : 開発効率化ためのツールなど
+* `infra` : DB、Cognito関連の定義と処理
+* `logger` : log処理
+* `third_party` : 使用するライブラリ関係の処理など
+
 # マイグレーション方法
  https://github.com/golang-migrate/migrate
 
