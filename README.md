@@ -8,6 +8,8 @@
 # API概要
 https://junya-it-nishi.atlassian.net/wiki/spaces/JN/pages/294913/Todo+REST+API
 
+※Confluenceのログインが必要
+
 # マイグレーション方法
  https://github.com/golang-migrate/migrate
 
