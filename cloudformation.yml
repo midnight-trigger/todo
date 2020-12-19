@@ -414,6 +414,9 @@ Parameters:
   Ngrok:
     Type: String
     Default: https://882bfb71a5a0.ngrok.io/
+  Domain:
+    Type: String
+    Default: todo-application
 
 Resources:
   # Cognito関連
@@ -440,7 +443,7 @@ Resources:
   UserPoolDomain:
     Type: AWS::Cognito::UserPoolDomain
     Properties:
-      Domain: todo-application
+      Domain: !Ref Domain
       UserPoolId: !Ref UserPool
     DeletionPolicy: Delete
 
