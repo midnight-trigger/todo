@@ -1,0 +1,943 @@
+AWSTemplateFormatVersion: 2010-09-09
+Metadata:
+  'AWS::CloudFormation::Designer':
+    4da57705-c821-47a8-a262-e3b9f24369ed:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 710
+        'y': 190
+      z: 0
+      embeds: []
+    cd2daf49-6948-4cbe-82bb-72ad7ac7679d:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 630
+        'y': 190
+      z: 0
+      embeds: []
+      isassociatedwith:
+        - 4da57705-c821-47a8-a262-e3b9f24369ed
+    9ffa36a8-31d5-4402-9208-415f76253f42:
+      source:
+        id: cd2daf49-6948-4cbe-82bb-72ad7ac7679d
+      target:
+        id: 4da57705-c821-47a8-a262-e3b9f24369ed
+      z: 1
+    3d60ea25-7895-44d5-ab25-d26efb4d0065:
+      size:
+        width: 170
+        height: 140
+      position:
+        x: 610
+        'y': 340
+      z: 0
+      embeds: []
+    de249202-fc38-4bc5-ab5e-deea49a53b52:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 850
+        'y': 310
+      z: 0
+      embeds: []
+      iscontainedinside:
+        - 3d60ea25-7895-44d5-ab25-d26efb4d0065
+      dependson:
+        - 4da57705-c821-47a8-a262-e3b9f24369ed
+    c62f9aa0-0ab7-4e82-b42e-94cb18400823:
+      source:
+        id: de249202-fc38-4bc5-ab5e-deea49a53b52
+      target:
+        id: 3d60ea25-7895-44d5-ab25-d26efb4d0065
+      z: 11
+    429637c9-23d6-460c-8d4a-6e697aae79d2:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 850
+        'y': 410
+      z: 0
+      embeds: []
+      iscontainedinside:
+        - 3d60ea25-7895-44d5-ab25-d26efb4d0065
+    c3c545df-379b-4afc-8e53-ba9b1d23b052:
+      source:
+        id: 429637c9-23d6-460c-8d4a-6e697aae79d2
+      target:
+        id: 3d60ea25-7895-44d5-ab25-d26efb4d0065
+      z: 11
+    710f5a9b-7129-4864-a51d-2b52de576b3e:
+      source:
+        id: de249202-fc38-4bc5-ab5e-deea49a53b52
+      target:
+        id: 4da57705-c821-47a8-a262-e3b9f24369ed
+      z: 12
+    ace04d81-f4fd-4643-8850-9729faba41c5:
+      size:
+        width: 140
+        height: 140
+      position:
+        x: 500
+        'y': 510
+      z: 0
+      embeds: []
+      iscontainedinside:
+        - 3d60ea25-7895-44d5-ab25-d26efb4d0065
+    c21bcbe7-efd9-4798-a49a-0bf2743ab8d0:
+      source:
+        id: ace04d81-f4fd-4643-8850-9729faba41c5
+      target:
+        id: 3d60ea25-7895-44d5-ab25-d26efb4d0065
+      z: 11
+    4779439c-1c08-4a01-b580-b2d797798375:
+      size:
+        width: 140
+        height: 140
+      position:
+        x: 380
+        'y': 680
+      z: 0
+      embeds: []
+      iscontainedinside:
+        - ace04d81-f4fd-4643-8850-9729faba41c5
+        - 3d60ea25-7895-44d5-ab25-d26efb4d0065
+    c183f3f4-7575-4cd6-bd63-3c14d330f1cd:
+      source:
+        id: 4779439c-1c08-4a01-b580-b2d797798375
+      target:
+        id: ace04d81-f4fd-4643-8850-9729faba41c5
+      z: 11
+    9a0cb561-54dc-4ff6-b9d4-5da66b45f629:
+      source:
+        id: 4779439c-1c08-4a01-b580-b2d797798375
+      target:
+        id: 3d60ea25-7895-44d5-ab25-d26efb4d0065
+      z: 11
+    63dc9feb-da9f-443a-b112-33bdb6f8cd8b:
+      size:
+        width: 140
+        height: 140
+      position:
+        x: 560
+        'y': 690
+      z: 0
+      embeds: []
+      iscontainedinside:
+        - ace04d81-f4fd-4643-8850-9729faba41c5
+        - 3d60ea25-7895-44d5-ab25-d26efb4d0065
+    4efc9cd8-24dd-4a5d-8513-0f0511e6c7c0:
+      source:
+        id: 63dc9feb-da9f-443a-b112-33bdb6f8cd8b
+      target:
+        id: ace04d81-f4fd-4643-8850-9729faba41c5
+      z: 11
+    9ae16b58-1110-426c-a108-6b0ef743f599:
+      source:
+        id: 63dc9feb-da9f-443a-b112-33bdb6f8cd8b
+      target:
+        id: 3d60ea25-7895-44d5-ab25-d26efb4d0065
+      z: 12
+    14b798ac-d03d-4bb9-b282-47a348f260f8:
+      size:
+        width: 140
+        height: 140
+      position:
+        x: 750
+        'y': 510
+      z: 0
+      embeds: []
+      iscontainedinside:
+        - 3d60ea25-7895-44d5-ab25-d26efb4d0065
+    0739c970-1852-4d3b-8645-82488c771a0e:
+      source:
+        id: 14b798ac-d03d-4bb9-b282-47a348f260f8
+      target:
+        id: 3d60ea25-7895-44d5-ab25-d26efb4d0065
+      z: 11
+    683e3b03-392e-4025-bc66-8ad64a080a0d:
+      size:
+        width: 140
+        height: 140
+      position:
+        x: 770
+        'y': 700
+      z: 0
+      embeds: []
+      iscontainedinside:
+        - 3d60ea25-7895-44d5-ab25-d26efb4d0065
+        - 14b798ac-d03d-4bb9-b282-47a348f260f8
+    35937312-b286-4104-98f2-406257b8dff1:
+      source:
+        id: 683e3b03-392e-4025-bc66-8ad64a080a0d
+      target:
+        id: 3d60ea25-7895-44d5-ab25-d26efb4d0065
+      z: 11
+    ded01009-496e-4e2a-bd86-51d1015fc164:
+      source:
+        id: 683e3b03-392e-4025-bc66-8ad64a080a0d
+      target:
+        id: 14b798ac-d03d-4bb9-b282-47a348f260f8
+      z: 12
+    4cc80c4e-bfac-4d72-bbe9-907018e364cd:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 400
+        'y': 860
+      z: 0
+      embeds: []
+      iscontainedinside:
+        - 3d60ea25-7895-44d5-ab25-d26efb4d0065
+        - 4779439c-1c08-4a01-b580-b2d797798375
+    df65b5a5-f15e-4375-848c-2842abd0f738:
+      source:
+        id: 4cc80c4e-bfac-4d72-bbe9-907018e364cd
+      target:
+        id: 3d60ea25-7895-44d5-ab25-d26efb4d0065
+      z: 11
+    4e439ae4-0210-43f3-b33b-a2ba221b04b5:
+      source:
+        id: 4cc80c4e-bfac-4d72-bbe9-907018e364cd
+      target:
+        id: 4779439c-1c08-4a01-b580-b2d797798375
+      z: 12
+    c700b0e0-0e23-4d84-94e1-09b65bb02217:
+      source:
+        id: 4cc80c4e-bfac-4d72-bbe9-907018e364cd
+        selector: 'g:nth-child(1) g:nth-child(4) g:nth-child(3) circle:nth-child(1)     '
+        port: 'AWS::ContainedInsideLink-AWS::ApiGateway::Resource-ResourceId'
+      target:
+        id: 4779439c-1c08-4a01-b580-b2d797798375
+      z: 14
+    291a7111-f00f-4e76-a417-6c5f801f88ea:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 592.371826603562
+        'y': 863.3478958735483
+      z: 0
+      embeds: []
+      iscontainedinside:
+        - 3d60ea25-7895-44d5-ab25-d26efb4d0065
+        - 63dc9feb-da9f-443a-b112-33bdb6f8cd8b
+    cd4b1fa1-377b-4467-92da-56cf8968a482:
+      source:
+        id: 291a7111-f00f-4e76-a417-6c5f801f88ea
+      target:
+        id: 3d60ea25-7895-44d5-ab25-d26efb4d0065
+      z: 11
+    ae460364-e806-4f55-9dca-f37d66191d6f:
+      source:
+        id: 291a7111-f00f-4e76-a417-6c5f801f88ea
+      target:
+        id: 63dc9feb-da9f-443a-b112-33bdb6f8cd8b
+      z: 12
+    d2fa9cee-3c00-42a2-840c-c8c11a641076:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 960
+        'y': 530
+      z: 0
+      embeds: []
+      isassociatedwith:
+        - de249202-fc38-4bc5-ab5e-deea49a53b52
+      iscontainedinside:
+        - 3d60ea25-7895-44d5-ab25-d26efb4d0065
+        - 14b798ac-d03d-4bb9-b282-47a348f260f8
+    2b791998-8cbb-48cb-bb42-dd90023c51d8:
+      source:
+        id: d2fa9cee-3c00-42a2-840c-c8c11a641076
+      target:
+        id: 3d60ea25-7895-44d5-ab25-d26efb4d0065
+      z: 11
+    436539a9-2940-431b-97a3-9b52671a4010:
+      source:
+        id: d2fa9cee-3c00-42a2-840c-c8c11a641076
+      target:
+        id: 14b798ac-d03d-4bb9-b282-47a348f260f8
+      z: 12
+    7994b183-5b60-4d57-8561-e702bbf12459:
+      source:
+        id: d2fa9cee-3c00-42a2-840c-c8c11a641076
+      target:
+        id: de249202-fc38-4bc5-ab5e-deea49a53b52
+      z: 11
+    e0b5bca9-e8ec-4ef3-922a-15d0af1fadca:
+      source:
+        id: d2fa9cee-3c00-42a2-840c-c8c11a641076
+        selector: 'g:nth-child(1) g:nth-child(4) g:nth-child(1) circle:nth-child(1)     '
+        port: 'AWS::RefLink-AWS::ApiGateway::Authorizer-AuthorizerId'
+      target:
+        id: de249202-fc38-4bc5-ab5e-deea49a53b52
+      z: 13
+    25bec34a-4095-4dfe-a78d-8115a58a80e0:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 950
+        'y': 610
+      z: 0
+      embeds: []
+      isassociatedwith:
+        - de249202-fc38-4bc5-ab5e-deea49a53b52
+      iscontainedinside:
+        - 3d60ea25-7895-44d5-ab25-d26efb4d0065
+        - 14b798ac-d03d-4bb9-b282-47a348f260f8
+    c8fb77af-cca3-45ee-8924-acb964d3cc42:
+      source:
+        id: 25bec34a-4095-4dfe-a78d-8115a58a80e0
+      target:
+        id: 3d60ea25-7895-44d5-ab25-d26efb4d0065
+      z: 11
+    6376c777-8374-4f73-befb-77fbc3eef50d:
+      source:
+        id: 25bec34a-4095-4dfe-a78d-8115a58a80e0
+      target:
+        id: de249202-fc38-4bc5-ab5e-deea49a53b52
+      z: 12
+    a1a70ac7-3875-4fdd-b66c-f863c7f410c1:
+      source:
+        id: 25bec34a-4095-4dfe-a78d-8115a58a80e0
+      target:
+        id: 14b798ac-d03d-4bb9-b282-47a348f260f8
+      z: 13
+    a8c6ef2b-381d-4778-9526-0fca40cceefc:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 952.3466757776192
+        'y': 714.0986666858934
+      z: 0
+      embeds: []
+      isassociatedwith:
+        - de249202-fc38-4bc5-ab5e-deea49a53b52
+      iscontainedinside:
+        - 3d60ea25-7895-44d5-ab25-d26efb4d0065
+        - 683e3b03-392e-4025-bc66-8ad64a080a0d
+    cd97e1d6-c1b5-4ba9-9a06-56eeee173301:
+      source:
+        id: a8c6ef2b-381d-4778-9526-0fca40cceefc
+      target:
+        id: 3d60ea25-7895-44d5-ab25-d26efb4d0065
+      z: 11
+    ec15ea77-4a5b-4900-a0a0-a7205ad501c4:
+      source:
+        id: a8c6ef2b-381d-4778-9526-0fca40cceefc
+      target:
+        id: de249202-fc38-4bc5-ab5e-deea49a53b52
+      z: 12
+    41cbde8a-1d1c-4fc6-80b2-6df21924d7ba:
+      source:
+        id: a8c6ef2b-381d-4778-9526-0fca40cceefc
+      target:
+        id: 683e3b03-392e-4025-bc66-8ad64a080a0d
+      z: 13
+    71fdacd2-7ef1-4ee7-8134-43286b7229a4:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 960
+        'y': 790
+      z: 0
+      embeds: []
+      isassociatedwith:
+        - de249202-fc38-4bc5-ab5e-deea49a53b52
+      iscontainedinside:
+        - 3d60ea25-7895-44d5-ab25-d26efb4d0065
+        - 683e3b03-392e-4025-bc66-8ad64a080a0d
+    b1fe1971-b05f-4f22-8bae-f52e41092268:
+      source:
+        id: 71fdacd2-7ef1-4ee7-8134-43286b7229a4
+      target:
+        id: 3d60ea25-7895-44d5-ab25-d26efb4d0065
+      z: 11
+    7f36a61c-6e5c-4784-8620-e55105972b66:
+      source:
+        id: 71fdacd2-7ef1-4ee7-8134-43286b7229a4
+      target:
+        id: de249202-fc38-4bc5-ab5e-deea49a53b52
+      z: 12
+    bba54184-a80c-4fb7-98a9-87a6d74511a5:
+      source:
+        id: 71fdacd2-7ef1-4ee7-8134-43286b7229a4
+      target:
+        id: 683e3b03-392e-4025-bc66-8ad64a080a0d
+      z: 13
+    3ed03d0e-d076-4cbb-9cf8-80323c82d79c:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 927.2231242303461
+        'y': 870.3656171400106
+      z: 0
+      embeds: []
+      isassociatedwith:
+        - de249202-fc38-4bc5-ab5e-deea49a53b52
+      iscontainedinside:
+        - 3d60ea25-7895-44d5-ab25-d26efb4d0065
+        - 683e3b03-392e-4025-bc66-8ad64a080a0d
+    2518d164-e3ee-46b6-afa4-042fffff8612:
+      source:
+        id: 3ed03d0e-d076-4cbb-9cf8-80323c82d79c
+      target:
+        id: 3d60ea25-7895-44d5-ab25-d26efb4d0065
+      z: 11
+    f4c54c4c-4314-453b-8e27-bc9c37220d65:
+      source:
+        id: 3ed03d0e-d076-4cbb-9cf8-80323c82d79c
+      target:
+        id: de249202-fc38-4bc5-ab5e-deea49a53b52
+      z: 12
+    79e8fab0-eaa5-4c2a-9023-99c226077a47:
+      source:
+        id: 3ed03d0e-d076-4cbb-9cf8-80323c82d79c
+      target:
+        id: 683e3b03-392e-4025-bc66-8ad64a080a0d
+      z: 13
+
+# 環境変数定義
+Parameters:
+  Ngrok:
+    Type: String
+    Default: https://882bfb71a5a0.ngrok.io/
+
+Resources:
+  # Cognito関連
+  UserPool:
+    Type: 'AWS::Cognito::UserPool'
+    Properties:
+      AdminCreateUserConfig:
+        AllowAdminCreateUserOnly: false
+        UnusedAccountValidityDays: 7
+      AutoVerifiedAttributes:
+        - email
+      EmailConfiguration:
+        EmailSendingAccount: COGNITO_DEFAULT
+      UsernameAttributes:
+        - email
+      VerificationMessageTemplate:
+        DefaultEmailOption: CONFIRM_WITH_LINK
+      UserPoolName: todo
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 4da57705-c821-47a8-a262-e3b9f24369ed
+    DeletionPolicy: Delete
+
+  UserPoolDomain:
+    Type: AWS::Cognito::UserPoolDomain
+    Properties:
+      Domain: todo-application
+      UserPoolId: !Ref UserPool
+    DeletionPolicy: Delete
+
+  UserPoolClient:
+    Type: 'AWS::Cognito::UserPoolClient'
+    Properties:
+      ClientName: todo
+      UserPoolId: !Ref UserPool
+      ExplicitAuthFlows:
+        - ALLOW_ADMIN_USER_PASSWORD_AUTH
+        - ALLOW_USER_PASSWORD_AUTH
+        - ALLOW_USER_SRP_AUTH
+        - ALLOW_REFRESH_TOKEN_AUTH
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: cd2daf49-6948-4cbe-82bb-72ad7ac7679d
+    DeletionPolicy: Delete
+
+  # API Gateway関連
+  RestApi:
+    Type: 'AWS::ApiGateway::RestApi'
+    Properties:
+      Name: todo
+      Parameters:
+        endpointConfigurationTypes: REGIONAL
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 3d60ea25-7895-44d5-ab25-d26efb4d0065
+    DeletionPolicy: Delete
+
+  Authorizer:
+    Type: 'AWS::ApiGateway::Authorizer'
+    Properties:
+      IdentitySource: method.request.header.Authorization
+      Name: Cognito
+      RestApiId: !Ref RestApi
+      Type: COGNITO_USER_POOLS
+      ProviderARNs:
+        - !GetAtt UserPool.Arn
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: de249202-fc38-4bc5-ab5e-deea49a53b52
+    DeletionPolicy: Delete
+    DependsOn:
+      - UserPool
+
+  # リソース
+  Users:
+    Type: 'AWS::ApiGateway::Resource'
+    Properties:
+      RestApiId: !Ref RestApi
+      PathPart: users
+      ParentId: !GetAtt
+        - RestApi
+        - RootResourceId
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: ace04d81-f4fd-4643-8850-9729faba41c5
+    DeletionPolicy: Delete
+
+  Signup:
+    Type: 'AWS::ApiGateway::Resource'
+    Properties:
+      ParentId: !Ref Users
+      RestApiId: !Ref RestApi
+      PathPart: signup
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 4779439c-1c08-4a01-b580-b2d797798375
+    DeletionPolicy: Delete
+
+  Signin:
+    Type: 'AWS::ApiGateway::Resource'
+    Properties:
+      ParentId: !Ref Users
+      RestApiId: !Ref RestApi
+      PathPart: signin
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 63dc9feb-da9f-443a-b112-33bdb6f8cd8b
+    DeletionPolicy: Delete
+
+  Todos:
+    Type: 'AWS::ApiGateway::Resource'
+    Properties:
+      RestApiId: !Ref RestApi
+      PathPart: todos
+      ParentId: !GetAtt
+        - RestApi
+        - RootResourceId
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 14b798ac-d03d-4bb9-b282-47a348f260f8
+    DeletionPolicy: Delete
+
+  TodoId:
+    Type: 'AWS::ApiGateway::Resource'
+    Properties:
+      RestApiId: !Ref RestApi
+      ParentId: !Ref Todos
+      PathPart: '{todoId}'
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 683e3b03-392e-4025-bc66-8ad64a080a0d
+    DeletionPolicy: Delete
+
+  # メソッド
+  PostUserSignup:
+    Type: 'AWS::ApiGateway::Method'
+    Properties:
+      RestApiId: !Ref RestApi
+      ResourceId: !Ref Signup
+      AuthorizationType: NONE
+      HttpMethod: POST
+      Integration:
+        Type: HTTP
+        IntegrationHttpMethod: POST
+        Uri:
+          !Join
+            - ''
+            - - !Ref Ngrok
+              - 'api/v1/users/signup'
+        IntegrationResponses:
+          - StatusCode: 200
+            ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: integration.response.header.Access-Control-Allow-Headers
+              method.response.header.Access-Control-Allow-Methods: integration.response.header.Access-Control-Allow-Methods
+              method.response.header.Access-Control-Allow-Origin: integration.response.header.Access-Control-Allow-Origin
+      MethodResponses:
+       - StatusCode: 200
+         ResponseModels:
+           application/json: 'Empty'
+         ResponseParameters:
+             method.response.header.Access-Control-Allow-Headers: false
+             method.response.header.Access-Control-Allow-Methods: false
+             method.response.header.Access-Control-Allow-Origin: false
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 4cc80c4e-bfac-4d72-bbe9-907018e364cd
+    DeletionPolicy: Delete
+
+  PostUserSignin:
+    Type: 'AWS::ApiGateway::Method'
+    Properties:
+      RestApiId: !Ref RestApi
+      ResourceId: !Ref Signin
+      AuthorizationType: NONE
+      HttpMethod: POST
+      Integration:
+        Type: HTTP
+        IntegrationHttpMethod: POST
+        Uri:
+          !Join
+            - ''
+            - - !Ref Ngrok
+              - 'api/v1/users/signin'
+        IntegrationResponses:
+          - StatusCode: 200
+            ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: integration.response.header.Access-Control-Allow-Headers
+              method.response.header.Access-Control-Allow-Methods: integration.response.header.Access-Control-Allow-Methods
+              method.response.header.Access-Control-Allow-Origin: integration.response.header.Access-Control-Allow-Origin
+      MethodResponses:
+       - StatusCode: 200
+         ResponseModels:
+           application/json: 'Empty'
+         ResponseParameters:
+             method.response.header.Access-Control-Allow-Headers: false
+             method.response.header.Access-Control-Allow-Methods: false
+             method.response.header.Access-Control-Allow-Origin: false
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 291a7111-f00f-4e76-a417-6c5f801f88ea
+    DeletionPolicy: Delete
+
+  PostTodo:
+    Type: 'AWS::ApiGateway::Method'
+    Properties:
+      RestApiId: !Ref RestApi
+      ResourceId: !Ref Todos
+      AuthorizationType: COGNITO_USER_POOLS
+      HttpMethod: POST
+      RequestParameters:
+        method.request.header.Authorization: true
+      AuthorizerId: !Ref Authorizer
+      Integration:
+        RequestParameters:
+          integration.request.header.Authorization: method.request.header.Authorization
+        Type: HTTP
+        IntegrationHttpMethod: POST
+        Uri:
+          !Join
+            - ''
+            - - !Ref Ngrok
+              - 'api/v1/todos'
+        IntegrationResponses:
+          - StatusCode: 200
+            ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: integration.response.header.Access-Control-Allow-Headers
+              method.response.header.Access-Control-Allow-Methods: integration.response.header.Access-Control-Allow-Methods
+              method.response.header.Access-Control-Allow-Origin: integration.response.header.Access-Control-Allow-Origin
+      MethodResponses:
+       - StatusCode: 200
+         ResponseModels:
+           application/json: 'Empty'
+         ResponseParameters:
+          method.response.header.Access-Control-Allow-Headers: false
+          method.response.header.Access-Control-Allow-Methods: false
+          method.response.header.Access-Control-Allow-Origin: false
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: d2fa9cee-3c00-42a2-840c-c8c11a641076
+    DeletionPolicy: Delete
+    DependsOn:
+      - Authorizer
+  GetTodos:
+    Type: 'AWS::ApiGateway::Method'
+    Properties:
+      RestApiId: !Ref RestApi
+      AuthorizerId: !Ref Authorizer
+      ResourceId: !Ref Todos
+      AuthorizationType: COGNITO_USER_POOLS
+      HttpMethod: GET
+      Integration:
+        RequestParameters:
+          integration.request.header.Authorization: method.request.header.Authorization
+          integration.request.querystring.limit: method.request.querystring.limit
+          integration.request.querystring.offset: method.request.querystring.offset
+          integration.request.querystring.sort: method.request.querystring.sort
+          integration.request.querystring.title: method.request.querystring.title
+          integration.request.querystring.body: method.request.querystring.body
+          integration.request.querystring.status: method.request.querystring.status
+        Type: HTTP
+        IntegrationHttpMethod: GET
+        Uri:
+          !Join
+            - ''
+            - - !Ref Ngrok
+              - 'api/v1/todos'
+        IntegrationResponses:
+          - StatusCode: 200
+            ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: integration.response.header.Access-Control-Allow-Headers
+              method.response.header.Access-Control-Allow-Methods: integration.response.header.Access-Control-Allow-Methods
+              method.response.header.Access-Control-Allow-Origin: integration.response.header.Access-Control-Allow-Origin
+      RequestParameters:
+        method.request.querystring.limit: false
+        method.request.querystring.offset: false
+        method.request.querystring.sort: false
+        method.request.querystring.title: false
+        method.request.querystring.body: false
+        method.request.querystring.status: false
+        method.request.header.Authorization: true
+      MethodResponses:
+       - StatusCode: 200
+         ResponseModels:
+           application/json: 'Empty'
+         ResponseParameters:
+             method.response.header.Access-Control-Allow-Headers: false
+             method.response.header.Access-Control-Allow-Methods: false
+             method.response.header.Access-Control-Allow-Origin: false
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 25bec34a-4095-4dfe-a78d-8115a58a80e0
+    DeletionPolicy: Delete
+    DependsOn:
+      - Authorizer
+
+  PutTodo:
+    Type: 'AWS::ApiGateway::Method'
+    Properties:
+      RestApiId: !Ref RestApi
+      AuthorizerId: !Ref Authorizer
+      ResourceId: !Ref TodoId
+      AuthorizationType: COGNITO_USER_POOLS
+      HttpMethod: PUT
+      Integration:
+        RequestParameters:
+          integration.request.header.Authorization: method.request.header.Authorization
+          integration.request.path.todoId: method.request.path.todoId
+        Type: HTTP
+        IntegrationHttpMethod: PUT
+        Uri:
+          !Join
+            - ''
+            - - !Ref Ngrok
+              - 'api/v1/todos/{todoId}'
+        IntegrationResponses:
+          - StatusCode: 200
+            ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: integration.response.header.Access-Control-Allow-Headers
+              method.response.header.Access-Control-Allow-Methods: integration.response.header.Access-Control-Allow-Methods
+              method.response.header.Access-Control-Allow-Origin: integration.response.header.Access-Control-Allow-Origin
+      RequestParameters:
+        method.request.header.Authorization: true
+        method.request.path.todoId: true
+      MethodResponses:
+       - StatusCode: 200
+         ResponseModels:
+           application/json: 'Empty'
+         ResponseParameters:
+             method.response.header.Access-Control-Allow-Headers: false
+             method.response.header.Access-Control-Allow-Methods: false
+             method.response.header.Access-Control-Allow-Origin: false
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: a8c6ef2b-381d-4778-9526-0fca40cceefc
+    DeletionPolicy: Delete
+    DependsOn:
+      - Authorizer
+
+  PatchTodo:
+    Type: 'AWS::ApiGateway::Method'
+    Properties:
+      RestApiId: !Ref RestApi
+      AuthorizerId: !Ref Authorizer
+      ResourceId: !Ref TodoId
+      AuthorizationType: COGNITO_USER_POOLS
+      HttpMethod: PATCH
+      Integration:
+        RequestParameters:
+          integration.request.header.Authorization: method.request.header.Authorization
+          integration.request.path.todoId: method.request.path.todoId
+        Type: HTTP
+        IntegrationHttpMethod: PATCH
+        Uri:
+          !Join
+            - ''
+            - - !Ref Ngrok
+              - 'api/v1/todos/{todoId}'
+        IntegrationResponses:
+          - StatusCode: 200
+            ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: integration.response.header.Access-Control-Allow-Headers
+              method.response.header.Access-Control-Allow-Methods: integration.response.header.Access-Control-Allow-Methods
+              method.response.header.Access-Control-Allow-Origin: integration.response.header.Access-Control-Allow-Origin
+      RequestParameters:
+        method.request.header.Authorization: true
+        method.request.path.todoId: true
+      MethodResponses:
+       - StatusCode: 200
+         ResponseModels:
+           application/json: 'Empty'
+         ResponseParameters:
+             method.response.header.Access-Control-Allow-Headers: false
+             method.response.header.Access-Control-Allow-Methods: false
+             method.response.header.Access-Control-Allow-Origin: false
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 71fdacd2-7ef1-4ee7-8134-43286b7229a4
+    DeletionPolicy: Delete
+    DependsOn:
+      - Authorizer
+
+  DeleteTodo:
+    Type: 'AWS::ApiGateway::Method'
+    Properties:
+      RestApiId: !Ref RestApi
+      AuthorizerId: !Ref Authorizer
+      ResourceId: !Ref TodoId
+      AuthorizationType: COGNITO_USER_POOLS
+      HttpMethod: DELETE
+      Integration:
+        RequestParameters:
+          integration.request.header.Authorization: method.request.header.Authorization
+          integration.request.path.todoId: method.request.path.todoId
+        Type: HTTP
+        IntegrationHttpMethod: DELETE
+        Uri:
+          !Join
+            - ''
+            - - !Ref Ngrok
+              - 'api/v1/todos/{todoId}'
+        IntegrationResponses:
+          - StatusCode: 200
+            ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: integration.response.header.Access-Control-Allow-Headers
+              method.response.header.Access-Control-Allow-Methods: integration.response.header.Access-Control-Allow-Methods
+              method.response.header.Access-Control-Allow-Origin: integration.response.header.Access-Control-Allow-Origin
+      RequestParameters:
+        method.request.header.Authorization: true
+        method.request.path.todoId: true
+      MethodResponses:
+       - StatusCode: 200
+         ResponseModels:
+           application/json: 'Empty'
+         ResponseParameters:
+             method.response.header.Access-Control-Allow-Headers: false
+             method.response.header.Access-Control-Allow-Methods: false
+             method.response.header.Access-Control-Allow-Origin: false
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 3ed03d0e-d076-4cbb-9cf8-80323c82d79c
+    DeletionPolicy: Delete
+    DependsOn:
+      - Authorizer
+  OptionsUsersSignin:
+    Type: 'AWS::ApiGateway::Method'
+    Properties:
+      RestApiId: !Ref RestApi
+      ResourceId: !Ref Signin
+      AuthorizationType: NONE
+      HttpMethod: OPTIONS
+      Integration:
+        Type: MOCK
+        IntegrationResponses:
+          - StatusCode: 200
+            ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Methods: "'POST,OPTIONS'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            ResponseTemplates:
+              application/json: ''
+      MethodResponses:
+        - StatusCode: 200
+          ResponseModels:
+            application/json: 'Empty'
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: false
+            method.response.header.Access-Control-Allow-Methods: false
+            method.response.header.Access-Control-Allow-Origin: false
+    DeletionPolicy: Delete
+  OptionsUsersSignup:
+    Type: 'AWS::ApiGateway::Method'
+    Properties:
+      RestApiId: !Ref RestApi
+      ResourceId: !Ref Signup
+      AuthorizationType: NONE
+      HttpMethod: OPTIONS
+      Integration:
+        Type: MOCK
+        IntegrationResponses:
+          - StatusCode: 200
+            ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Methods: "'POST,OPTIONS'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            ResponseTemplates:
+              application/json: ''
+      MethodResponses:
+        - StatusCode: 200
+          ResponseModels:
+            application/json: 'Empty'
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: false
+            method.response.header.Access-Control-Allow-Methods: false
+            method.response.header.Access-Control-Allow-Origin: false
+    DeletionPolicy: Delete
+  OptionsTodos:
+    Type: 'AWS::ApiGateway::Method'
+    Properties:
+      RestApiId: !Ref RestApi
+      ResourceId: !Ref Todos
+      AuthorizationType: NONE
+      HttpMethod: OPTIONS
+      Integration:
+        Type: MOCK
+        IntegrationResponses:
+          - StatusCode: 200
+            ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Methods: "'POST,GET,OPTIONS'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            ResponseTemplates:
+              application/json: ''
+      MethodResponses:
+        - StatusCode: 200
+          ResponseModels:
+            application/json: 'Empty'
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: false
+            method.response.header.Access-Control-Allow-Methods: false
+            method.response.header.Access-Control-Allow-Origin: false
+    DeletionPolicy: Delete
+  OptionsTodoId:
+    Type: 'AWS::ApiGateway::Method'
+    Properties:
+      RestApiId: !Ref RestApi
+      ResourceId: !Ref TodoId
+      AuthorizationType: NONE
+      HttpMethod: OPTIONS
+      Integration:
+        Type: MOCK
+        IntegrationResponses:
+          - StatusCode: 200
+            ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Methods: "'PUT,PATCH,DELETE,OPTIONS'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            ResponseTemplates:
+              application/json: ''
+      MethodResponses:
+        - StatusCode: 200
+          ResponseModels:
+            application/json: 'Empty'
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: false
+            method.response.header.Access-Control-Allow-Methods: false
+            method.response.header.Access-Control-Allow-Origin: false
+    DeletionPolicy: Delete
