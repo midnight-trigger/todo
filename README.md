@@ -42,8 +42,11 @@ https://junya-it-nishi.atlassian.net/wiki/spaces/JN/pages/294913/Todo+REST+API
 https://code-graffiti.com/set-golang-environment-on-mac-with-vscode/
 
 （２）設定した`$GOPATH/src`配下に本APIをcloneする
+
 （３）パッケージをインストールする
+
 `source ~/.bash_profile` ※bashの場合
+
 `go build`
 
 （4）ローカルにNgrokを導入・起動する
