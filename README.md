@@ -80,6 +80,9 @@ https://qiita.com/hirokisoccer/items/7033c1bb9c85bf6789bd
   * デプロイされたAPI GatewayのURLを適宜確認して下さい
   * 例）会員登録API：<API GatewayのURL>/users/signup
     * APIの仕様については『API概要』を参照
+    
+※本番環境エンドポイント
+https://v9a5ayh1v1.execute-api.ap-northeast-1.amazonaws.com/prod
 
 # マイグレーション方法
  https://github.com/golang-migrate/migrate
