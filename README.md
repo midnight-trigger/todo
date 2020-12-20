@@ -1,9 +1,17 @@
 # 使用技術
-* バックエンド：Golang1.14（Echo）
-* ORM：GORM
-* DB：MySQL8.0.22
+* APIサーバ：EC2
+  * バックエンド：Golang1.14（Echo）
+* DBサーバ：RDS
+  * ORM：GORM
+  * DB：MySQL
 * 認証基盤：Cognito
 * API基盤：API Gateway
+
+※本番環境エンドポイント
+
+https://v9a5ayh1v1.execute-api.ap-northeast-1.amazonaws.com/prod
+
+例）会員登録API：method: "POST" path:"https://v9a5ayh1v1.execute-api.ap-northeast-1.amazonaws.com/prod/users/signup"
 
 # API概要
 https://junya-it-nishi.atlassian.net/wiki/spaces/JN/pages/294913/Todo+REST+API
@@ -81,9 +89,6 @@ https://qiita.com/hirokisoccer/items/7033c1bb9c85bf6789bd
   * 例）会員登録API：<API GatewayのURL>/users/signup
     * APIの仕様については『API概要』を参照
     
-※本番環境エンドポイント
-https://v9a5ayh1v1.execute-api.ap-northeast-1.amazonaws.com/prod
-
 # マイグレーション方法
  https://github.com/golang-migrate/migrate
 
